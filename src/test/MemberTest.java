@@ -50,7 +50,7 @@ public class MemberTest {
         HealthCheck healthCheck = new HealthCheck();
         member.addHealthCheck(healthCheck);
 
-        Assert.assertFalse(member.getPrograms().isEmpty());
+        Assert.assertFalse(member.getHealthChecks().isEmpty());
     }
 
     @Test

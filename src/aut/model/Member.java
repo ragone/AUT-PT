@@ -54,4 +54,8 @@ public class Member extends Person {
     public boolean haveProgram() {
         return !programs.isEmpty();
     }
+
+    public LinkedList<HealthCheck> getHealthChecks() {
+        return healthChecks;
+    }
 }
