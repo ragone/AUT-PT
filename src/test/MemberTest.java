@@ -4,7 +4,6 @@ import aut.model.HealthCheck;
 import aut.model.Member;
 import aut.model.Program;
 import org.junit.*;
-import org.junit.*;
 
 import java.time.LocalDate;
 
@@ -59,7 +58,7 @@ public class MemberTest {
         member.addHealthCheck(healthCheck);
         member.deleteHealthCheck(healthCheck);
 
-        Assert.assertTrue(member.getPrograms().isEmpty());
+        Assert.assertTrue(member.getHealthChecks().isEmpty());
     }
 
     @Test
