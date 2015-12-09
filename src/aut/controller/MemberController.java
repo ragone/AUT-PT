@@ -8,6 +8,8 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -15,6 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -30,6 +34,9 @@ import java.util.ResourceBundle;
  * @version 9/12/15
  */
 public class MemberController implements Initializable {
+
+    /** FXML variables **/
+
     @FXML
     private TextField firstNameTF;
     @FXML
@@ -151,42 +158,16 @@ public class MemberController implements Initializable {
     @FXML
     private VBox container;
     @FXML
+    private ToolBar bodyToolBar;
 
     /** My variables **/
 
-    private ToolBar bodyToolBar;
-    private Member member;
     private final int CIRCLE_DIA = 30;
+
+    private Member member;
     private ColorPicker bodyCP;
-    private HashMap<Double, Double> bodyMarkers = new HashMap<>();
+    private HashMap<Point2D, Color> bodyMarkers;
     private boolean changed = false;
-
-    @FXML
-    private void close(ActionEvent event) {
-        Stage stage = (Stage) exitBtn.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void save(ActionEvent event) {
-    }
-
-    @FXML
-    private void drawCanvas(MouseEvent event) {
-        bodyMarkers.put(event.getX(), event.getY());
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setStroke(bodyCP.getValue());
-        gc.setLineWidth(5.0);
-        gc.strokeOval(event.getX() - CIRCLE_DIA / 2, event.getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
-
-    }
-
-    @FXML
-    private void clearCanvas(ActionEvent event) {
-        bodyMarkers.clear();
-        canvas.getGraphicsContext2D().clearRect(0, 0, 600, 510);
-        canvas.getGraphicsContext2D().drawImage(new Image("file:body.png"), 0, 0);
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -195,6 +176,7 @@ public class MemberController implements Initializable {
         bodyCP.setMaxWidth(50.0);
         bodyToolBar.getItems().add(bodyCP);
 
+        bodyMarkers = new HashMap<>();
         saveBtn.setDisable(true);
         ageLabel.setText("");
         canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
@@ -213,6 +195,38 @@ public class MemberController implements Initializable {
 
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    /** FXML methods **/
+
+    @FXML
+    private void close(ActionEvent event) {
+        Stage stage = (Stage) exitBtn.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void save(ActionEvent event) {
+    }
+
+    @FXML
+    private void drawCanvas(MouseEvent event) {
+        bodyMarkers.put(new Point2D(event.getX(), event.getY()), bodyCP.getValue());
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setStroke(bodyCP.getValue());
+        gc.setLineWidth(1.0);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.strokeText("" + bodyMarkers.size(), event.getX(), event.getY(), CIRCLE_DIA);
+        gc.setLineWidth(5.0);
+        gc.strokeOval(event.getX() - CIRCLE_DIA / 2, event.getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
+    }
+
+    @FXML
+    private void clearCanvas(ActionEvent event) {
+        bodyMarkers.clear();
+        canvas.getGraphicsContext2D().clearRect(0, 0, 600, 510);
+        canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
     }
 
     /** Methods **/

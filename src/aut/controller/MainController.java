@@ -5,11 +5,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -57,19 +63,33 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Add new member and update database
+     * Open new window to add member
      */
     public void addMember(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
+            root = fxmlLoader.load();
+            MemberController controller = fxmlLoader.<MemberController>getController();
+            controller.setMember(null);
+            Stage stage = new Stage();
+            stage.setTitle("Member");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * Edit member and update database
+     * Edit selected Member from table in new window
      */
     public void editMember(ActionEvent actionEvent) {
     }
 
     /**
-     * Delete member and update database
+     * Delete selected Member from table
      */
     public void deleteMember(ActionEvent actionEvent) {
     }
