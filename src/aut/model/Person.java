@@ -13,20 +13,26 @@ public abstract class Person {
     private String id;
     private String firstName;
     private String lastName;
+    private Gender gender;
     private LocalDate dateAdded;
     private LocalDate lastModified;
     private boolean isPersonalTrainer;
 
-    public Person(String firstName,String lastName, boolean isPersonalTrainer) {
+    public Person(String firstName, String lastName, boolean isPersonalTrainer) {
         this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.gender = Gender.MALE;
         this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
         this.isPersonalTrainer = isPersonalTrainer;
     }
 
     /** Getters **/
+
+    public Gender getGender() {
+        return gender;
+    }
 
     public String getId() {
         return id;
@@ -53,6 +59,10 @@ public abstract class Person {
     }
 
     /** Setters **/
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -82,6 +92,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName() + ":" + getId();
+        return getFirstName() + " " + getLastName();
     }
 }

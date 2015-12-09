@@ -14,7 +14,7 @@ public class HealthCheck {
             whichDiseases, bp, sports;
     private PersonalTrainer personalTrainer;
     private LocalDate dateOfBirth, dateAdded, dateModified;
-    private boolean male, usedGym, usedWeights, haveDiseases, doneGroupFitness, usedPersonalTrainer,
+    private boolean usedGym, usedWeights, haveDiseases, doneGroupFitness, usedPersonalTrainer,
             doneSports, haveActiveProgram;
     private ArrayList<Boolean> checkBoxes;
     private Double availableDays, workoutTime;
@@ -35,7 +35,6 @@ public class HealthCheck {
         this.haveActiveProgram = false;
         this.haveDiseases = false;
         this.likes = null;
-        this.male = false;
         this.personalTrainer = null;
         this.programUsed = null;
         this.rhr = null;
@@ -108,10 +107,6 @@ public class HealthCheck {
 
     public String getLikes() {
         return likes;
-    }
-
-    public boolean isMale() {
-        return male;
     }
 
     public PersonalTrainer getPersonalTrainer() {
@@ -214,10 +209,6 @@ public class HealthCheck {
 
     public void setLikes(String likes) {
         this.likes = likes;
-    }
-
-    public void setMale(boolean male) {
-        this.male = male;
     }
 
     public void setPersonalTrainer(PersonalTrainer personalTrainer) {
