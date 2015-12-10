@@ -65,6 +65,7 @@ public class MainController implements Initializable {
     /**
      * Open new window to add member
      */
+    @FXML
     public void addMember(ActionEvent actionEvent) {
         Parent root;
         try {
@@ -85,12 +86,35 @@ public class MainController implements Initializable {
     /**
      * Edit selected Member from table in new window
      */
+    @FXML
     public void editMember(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
+            root = fxmlLoader.load();
+            MemberController controller = fxmlLoader.<MemberController>getController();
+            setupController(controller);
+            Stage stage = new Stage();
+            stage.setTitle("Member");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setupController(MemberController controller) {
+        Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
+        controller.setMember(selectedMember);
+        controller.getFirstNameTF().setText(selectedMember.getFirstName());
+        controller.getLastNameTF().setText(selectedMember.getLastName());
     }
 
     /**
      * Delete selected Member from table
      */
+    @FXML
     public void deleteMember(ActionEvent actionEvent) {
     }
 }

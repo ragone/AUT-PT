@@ -182,13 +182,272 @@ public class MemberController implements Initializable {
         canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
 
         setupListeners();
-
     }
 
     /** Getters **/
 
     public Member getMember() {
         return member;
+    }
+
+    public Label getAgeLabel() {
+        return ageLabel;
+    }
+
+    public Slider getAvailableDaysSlider() {
+        return availableDaysSlider;
+    }
+
+    public TextField getBmiTF() {
+        return bmiTF;
+    }
+
+    public ColorPicker getBodyCP() {
+        return bodyCP;
+    }
+
+    public HashMap<Point2D, Color> getBodyMarkers() {
+        return bodyMarkers;
+    }
+
+    public ToolBar getBodyToolBar() {
+        return bodyToolBar;
+    }
+
+    public TextField getBpTF() {
+        return bpTF;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public CheckBox getCB10() {
+        return CB10;
+    }
+
+    public CheckBox getCB11() {
+        return CB11;
+    }
+
+    public CheckBox getCB12() {
+        return CB12;
+    }
+
+    public CheckBox getCB13() {
+        return CB13;
+    }
+
+    public CheckBox getCB14() {
+        return CB14;
+    }
+
+    public CheckBox getCB15() {
+        return CB15;
+    }
+
+    public CheckBox getCB16() {
+        return CB16;
+    }
+
+    public CheckBox getCB17() {
+        return CB17;
+    }
+
+    public CheckBox getCB18() {
+        return CB18;
+    }
+
+    public CheckBox getCB1() {
+        return CB1;
+    }
+
+    public CheckBox getCB2() {
+        return CB2;
+    }
+
+    public CheckBox getCB3() {
+        return CB3;
+    }
+
+    public CheckBox getCB4() {
+        return CB4;
+    }
+
+    public CheckBox getCB5() {
+        return CB5;
+    }
+
+    public CheckBox getCB6() {
+        return CB6;
+    }
+
+    public CheckBox getCB7() {
+        return CB7;
+    }
+
+    public CheckBox getCB8() {
+        return CB8;
+    }
+
+    public CheckBox getCB9() {
+        return CB9;
+    }
+
+    public boolean isChanged() {
+        return changed;
+    }
+
+    public int getCIRCLE_DIA() {
+        return CIRCLE_DIA;
+    }
+
+    public VBox getContainer() {
+        return container;
+    }
+
+    public DatePicker getDateOfBirthDP() {
+        return dateOfBirthDP;
+    }
+
+    public ToggleGroup getDiseases() {
+        return diseases;
+    }
+
+    public TextField getDiseasesTF() {
+        return diseasesTF;
+    }
+
+    public TextField getDislikesTF() {
+        return dislikesTF;
+    }
+
+    public ToggleGroup getDoneSports() {
+        return doneSports;
+    }
+
+    public RadioButton getDoneSportsNo() {
+        return doneSportsNo;
+    }
+
+    public RadioButton getDoneSportsYes() {
+        return doneSportsYes;
+    }
+
+    public ToggleGroup getDoneWeights() {
+        return doneWeights;
+    }
+
+    public RadioButton getDoneWeightsNo() {
+        return doneWeightsNo;
+    }
+
+    public RadioButton getDoneWeightsYes() {
+        return doneWeightsYes;
+    }
+
+    public Button getExitBtn() {
+        return exitBtn;
+    }
+
+    public RadioButton getFemale() {
+        return female;
+    }
+
+    public TextField getFirstNameTF() {
+        return firstNameTF;
+    }
+
+    public ToggleGroup getGender() {
+        return gender;
+    }
+
+    public TextArea getGoalTA() {
+        return goalTA;
+    }
+
+    public TextArea getGoalTargetTA() {
+        return goalTargetTA;
+    }
+
+    public ToggleGroup getGroupFitness() {
+        return groupFitness;
+    }
+
+    public RadioButton getGroupFitnessNo() {
+        return groupFitnessNo;
+    }
+
+    public RadioButton getGroupFitnessYes() {
+        return groupFitnessYes;
+    }
+
+    public ToggleGroup getGymUsed() {
+        return gymUsed;
+    }
+
+    public RadioButton getHaveDiseasesNo() {
+        return haveDiseasesNo;
+    }
+
+    public RadioButton getHaveDiseasesYes() {
+        return haveDiseasesYes;
+    }
+
+    public TextField getLastNameTF() {
+        return lastNameTF;
+    }
+
+    public TextField getLikesTF() {
+        return likesTF;
+    }
+
+    public RadioButton getMale() {
+        return male;
+    }
+
+    public ToggleGroup getPersonalTrainer() {
+        return personalTrainer;
+    }
+
+    public RadioButton getPersonalTrainerNo() {
+        return personalTrainerNo;
+    }
+
+    public RadioButton getPersonalTrainerYes() {
+        return personalTrainerYes;
+    }
+
+    public TextField getProgramUsedTF() {
+        return programUsedTF;
+    }
+
+    public TextField getRhrTF() {
+        return rhrTF;
+    }
+
+    public Button getSaveBtn() {
+        return saveBtn;
+    }
+
+    public TextField getSportsTF() {
+        return sportsTF;
+    }
+
+    public RadioButton getUsedGymNo() {
+        return usedGymNo;
+    }
+
+    public RadioButton getUsedGymYes() {
+        return usedGymYes;
+    }
+
+    public TextField getWeightTF() {
+        return weightTF;
+    }
+
+    public Slider getWorkoutTimeSlider() {
+        return workoutTimeSlider;
     }
 
     /** Setters **/
@@ -207,6 +466,18 @@ public class MemberController implements Initializable {
 
     @FXML
     private void save(ActionEvent event) {
+        if(member == null) {
+            member = new Member(firstNameTF.getText(), lastNameTF.getText());
+            MainController.members.add(member);
+        } else {
+            member.setFirstName(firstNameTF.getText());
+            member.setLastName(lastNameTF.getText());
+            // update member array in view
+        }
+
+
+        saveBtn.setDisable(true);
+        changed = false;
     }
 
     @FXML
@@ -246,18 +517,18 @@ public class MemberController implements Initializable {
         MyChangeListener listener = new MyChangeListener();
         firstNameTF.textProperty().addListener(listener);
         lastNameTF.textProperty().addListener(listener);
-        dateOfBirthDP.armedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (dateOfBirthDP.getValue() != null) {
-                    ageLabel.setText("(Age: " + getAge() + ")");
-                }
-                if (!changed) {
-                    changed = true;
-                    saveBtn.setDisable(false);
-                }
-            }
-        });
+//        dateOfBirthDP.armedProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                if (dateOfBirthDP.getValue() != null) {
+//                    ageLabel.setText("(Age: " + getAge() + ")");
+//                }
+//                if (!changed) {
+//                    changed = true;
+//                    saveBtn.setDisable(false);
+//                }
+//            }
+//        });
         gender.selectedToggleProperty().addListener(listener);
         goalTA.textProperty().addListener(listener);
         goalTargetTA.textProperty().addListener(listener);
