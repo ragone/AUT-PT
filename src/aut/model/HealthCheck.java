@@ -13,7 +13,7 @@ public class HealthCheck {
     private String goal, goalTarget, programUsed, likes, dislikes, bmi, weight, rhr,
             whichDiseases, bp, sports;
     private PersonalTrainer personalTrainer;
-    private LocalDate dateOfBirth, dateAdded, dateModified;
+    private LocalDate dateAdded, dateModified;
     private boolean usedGym, usedWeights, haveDiseases, doneGroupFitness, usedPersonalTrainer,
             doneSports, haveActiveProgram;
     private ArrayList<Boolean> checkBoxes;
@@ -22,29 +22,28 @@ public class HealthCheck {
     public HealthCheck() {
         this.dateAdded = LocalDate.now();
         this.dateModified = LocalDate.now();
-        this.availableDays = null;
-        this.bmi = null;
-        this.bp = null;
+        this.availableDays = 3.0;
+        this.bmi = "";
+        this.bp = "";
         this.checkBoxes = new ArrayList<>();
-        this.dateOfBirth = null;
-        this.dislikes = null;
+        this.dislikes = "";
         this.doneGroupFitness = false;
         this.doneSports = false;
-        this.goal = null;
-        this.goalTarget = null;
+        this.goal = "";
+        this.goalTarget = "";
         this.haveActiveProgram = false;
         this.haveDiseases = false;
-        this.likes = null;
+        this.likes = "";
         this.personalTrainer = null;
-        this.programUsed = null;
-        this.rhr = null;
-        this.sports = null;
+        this.programUsed = "";
+        this.rhr = "";
+        this.sports = "";
         this.usedGym = false;
         this.usedPersonalTrainer = false;
         this.usedWeights = false;
-        this.weight = null;
-        this.whichDiseases = null;
-        this.workoutTime = null;
+        this.weight = "";
+        this.whichDiseases = "";
+        this.workoutTime = 60.0;
     }
 
     /** Getters **/
@@ -71,10 +70,6 @@ public class HealthCheck {
 
     public LocalDate getDateModified() {
         return dateModified;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
     }
 
     public String getDislikes() {
@@ -173,10 +168,6 @@ public class HealthCheck {
 
     public void setDateModified(LocalDate dateModified) {
         this.dateModified = dateModified;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public void setDislikes(String dislikes) {

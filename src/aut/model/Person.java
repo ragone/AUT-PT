@@ -14,6 +14,7 @@ public abstract class Person {
     private String firstName;
     private String lastName;
     private Gender gender;
+    private LocalDate dateOfBirth;
     private LocalDate dateAdded;
     private LocalDate lastModified;
     private boolean isPersonalTrainer;
@@ -23,12 +24,17 @@ public abstract class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = Gender.MALE;
+        this.dateOfBirth = LocalDate.now();
         this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
         this.isPersonalTrainer = isPersonalTrainer;
     }
 
     /** Getters **/
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
 
     public Gender getGender() {
         return gender;
@@ -59,6 +65,10 @@ public abstract class Person {
     }
 
     /** Setters **/
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public void setGender(Gender gender) {
         this.gender = gender;

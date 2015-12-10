@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aut.controller.HealthCheckController">
+   <children>
+      <ToolBar>
+        <items>
+          <Button fx:id="exitBtn" cancelButton="true" mnemonicParsing="false" onAction="#close" prefWidth="50.0" text="Exit">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL">
+               <padding>
+                  <Insets left="4.0" />
+               </padding>
+            </Separator>
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#save" prefWidth="50.0" text="Save">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab closable="false" text="General">
+               <content>
+                  <ScrollPane fitToWidth="true">
+                     <content>
+                        <VBox>
+                           <children>
+                              <TitledPane collapsible="false" text="What would you like to achieve in the gym?">
+                                 <content>
+                                    <TextArea fx:id="goalTA" prefRowCount="3" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane collapsible="false" layoutX="10.0" layoutY="142.0" text="Have you got an event or date in which you'd like to compelete this by?">
+                                 <content>
+                                    <TextArea fx:id="goalTargetTA" prefRowCount="3" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane collapsible="false" layoutX="10.0" layoutY="247.0" text="Exercise history">
+                                 <content>
+                                    <VBox>
+                                       <children>
+                                          <GridPane hgap="10.0" vgap="10.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="Have you ever used a gym before?" />
+                                                <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <RadioButton fx:id="usedGymYes" mnemonicParsing="false" text="Yes">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="gymUsed" />
+                                                         </toggleGroup>
+                                                      </RadioButton>
+                                                      <RadioButton fx:id="usedGymNo" mnemonicParsing="false" text="No" toggleGroup="$gymUsed" />
+                                                   </children>
+                                                </FlowPane>
+                                                <Label text="If so, what type of program did you have?" GridPane.rowIndex="1" />
+                                                <TextField fx:id="programUsedTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="Have you done weights before?" GridPane.rowIndex="2" />
+                                                <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <RadioButton fx:id="doneWeightsYes" mnemonicParsing="false" text="Yes">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="doneWeights" />
+                                                         </toggleGroup>
+                                                      </RadioButton>
+                                                      <RadioButton fx:id="doneWeightsNo" mnemonicParsing="false" text="No" toggleGroup="$doneWeights" />
+                                                   </children>
+                                                </FlowPane>
+                                                <Label text="Likes?" GridPane.rowIndex="3" />
+                                                <Label text="Dislikes?" GridPane.rowIndex="4" />
+                                                <TextField fx:id="likesTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="dislikesTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Label text="Have you done any recent sports or fitness?" GridPane.rowIndex="5" />
+                                                <FlowPane alignment="CENTER_LEFT" hgap="10.0" layoutX="390.0" layoutY="100.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <children>
+                                                      <RadioButton fx:id="doneSportsYes" mnemonicParsing="false" text="Yes">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="doneSports" />
+                                                         </toggleGroup>
+                                                      </RadioButton>
+                                                      <RadioButton fx:id="doneSportsNo" mnemonicParsing="false" text="No" toggleGroup="$doneSports" />
+                                                   </children>
+                                                </FlowPane>
+                                                <Label text="Expand:" GridPane.rowIndex="6" />
+                                                <TextField fx:id="sportsTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="Medical Conditions">
+               <content>
+                  <ScrollPane fitToWidth="true">
+                     <content>
+                        <VBox maxWidth="1.7976931348623157E308">
+                           <children>
+                              <TitledPane collapsible="false" text="General">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <content>
+                                    <VBox spacing="10.0">
+                                       <children>
+                                          <GridPane hgap="10.0" vgap="10.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <TextField fx:id="bpTF" GridPane.columnIndex="1" />
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="3">
+                                                   <children>
+                                                      <TextField fx:id="weightTF" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                                <Label text="BP:" />
+                                                <Label text="Weights (optional):" GridPane.columnIndex="2" />
+                                                <Label text="RHR:" GridPane.rowIndex="1" />
+                                                <Label text="BMI:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <TextField fx:id="rhrTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="bmiTF" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane hgap="10.0" vgap="10.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="Any Infections or infectious diseases?" />
+                                                <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <RadioButton fx:id="haveDiseasesYes" mnemonicParsing="false" text="Yes">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="diseases" />
+                                                         </toggleGroup>
+                                                      </RadioButton>
+                                                      <RadioButton fx:id="haveDiseasesNo" mnemonicParsing="false" text="No" toggleGroup="$diseases" />
+                                                   </children>
+                                                </FlowPane>
+                                                <Label text="Please specify:" GridPane.rowIndex="1" />
+                                                <TextField fx:id="diseasesTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </TitledPane>
+                              <TitledPane collapsible="false" text="Checklist">
+                                 <content>
+                                    <GridPane hgap="10.0" vgap="10.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="20.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <TitledPane expanded="false" text="High/Low blood pressure?" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Stroke?" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Raised cholesterol?" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Diabetes?" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Family member under 55 with any of the above?" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Asthma?" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Epilepsy?" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Arthritis?" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Pregnancy (now or within the last 3 months)?" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Hernia?" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Dieting or fasting?" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Dizziness, loss of balance or fainting?" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Any recent surgery in the last 12 months?" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Any Infections or infectious diseases?" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Any other chronic illness or condition?" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Do you smoke?" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <TitledPane expanded="false" text="Are you on any medication that may affect your ability to exercise?" GridPane.columnIndex="1" GridPane.rowIndex="17">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                          <CheckBox fx:id="CB1" mnemonicParsing="false" />
+                                          <CheckBox fx:id="CB2" mnemonicParsing="false" GridPane.rowIndex="1" />
+                                          <CheckBox fx:id="CB3" mnemonicParsing="false" GridPane.rowIndex="2" />
+                                          <CheckBox fx:id="CB4" mnemonicParsing="false" GridPane.rowIndex="3" />
+                                          <CheckBox fx:id="CB5" mnemonicParsing="false" GridPane.rowIndex="4" />
+                                          <CheckBox fx:id="CB6" mnemonicParsing="false" GridPane.rowIndex="5" />
+                                          <CheckBox fx:id="CB7" mnemonicParsing="false" GridPane.rowIndex="6" />
+                                          <CheckBox fx:id="CB8" mnemonicParsing="false" GridPane.rowIndex="7" />
+                                          <CheckBox fx:id="CB9" mnemonicParsing="false" GridPane.rowIndex="8" />
+                                          <CheckBox fx:id="CB10" mnemonicParsing="false" GridPane.rowIndex="9" />
+                                          <CheckBox fx:id="CB11" mnemonicParsing="false" GridPane.rowIndex="10" />
+                                          <CheckBox fx:id="CB12" mnemonicParsing="false" GridPane.rowIndex="11" />
+                                          <CheckBox fx:id="CB13" mnemonicParsing="false" GridPane.rowIndex="12" />
+                                          <CheckBox fx:id="CB14" mnemonicParsing="false" GridPane.rowIndex="13" />
+                                          <CheckBox fx:id="CB15" mnemonicParsing="false" GridPane.rowIndex="14" />
+                                          <CheckBox fx:id="CB16" mnemonicParsing="false" GridPane.rowIndex="15" />
+                                          <CheckBox fx:id="CB17" mnemonicParsing="false" GridPane.rowIndex="16" />
+                                          <CheckBox fx:id="CB18" mnemonicParsing="false" GridPane.rowIndex="17" />
+                                          <TitledPane expanded="false" text="History of heart problems or chest pain?" GridPane.columnIndex="1">
+                                             <content>
+                                                <TextArea prefRowCount="3" promptText="Notes" />
+                                             </content>
+                                          </TitledPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" top="10.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="Physical Conditions">
+               <content>
+                  <ScrollPane fitToWidth="true">
+                     <content>
+                        <VBox>
+                           <children>
+                              <TitledPane collapsible="false" text="Notes">
+                                 <content>
+                                    <TextArea prefRowCount="4" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane collapsible="false" focusTraversable="false" text="Body Map">
+                                 <content>
+                                    <VBox alignment="TOP_CENTER">
+                                       <children>
+                                          <ToolBar fx:id="bodyToolBar">
+                                            <items>
+                                              <Button mnemonicParsing="false" onAction="#clearCanvas" text="Clear All">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                </Button>
+                                                <Separator orientation="VERTICAL" />
+                                            </items>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" left="-10.0" right="-10.0" top="-10.0" />
+                                             </VBox.margin>
+                                          </ToolBar>
+                                          <Canvas fx:id="canvas" height="510.0" onMouseClicked="#drawCanvas" width="600.0" />
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="Programs">
+               <content>
+                  <VBox>
+                     <children>
+                        <TitledPane animated="false" collapsible="false" text="Frequency and Goals">
+                           <content>
+                              <GridPane hgap="10.0" vgap="10.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="How many days a week would you be available to train?" />
+                                    <Slider fx:id="availableDaysSlider" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="4.0" GridPane.columnIndex="1" />
+                                    <Label text="How long would like to work out for in minutes?" GridPane.rowIndex="1" />
+                                    <Slider fx:id="workoutTimeSlider" blockIncrement="5.0" majorTickUnit="10.0" max="120.0" min="10.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="60.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Would you like to include a group fitness class into your workout routine?" GridPane.rowIndex="2" />
+                                    <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <RadioButton fx:id="groupFitnessYes" mnemonicParsing="false" text="Yes">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="groupFitness" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="groupFitnessNo" mnemonicParsing="false" text="No" toggleGroup="$groupFitness" />
+                                       </children>
+                                    </FlowPane>
+                                    <Label text="Have you ever thought of or had a personal trainer before?" GridPane.rowIndex="3" />
+                                    <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <RadioButton fx:id="personalTrainerYes" mnemonicParsing="false" text="Yes">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="personalTrainer" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="personalTrainerNo" mnemonicParsing="false" text="No" toggleGroup="$personalTrainer" />
+                                       </children>
+                                    </FlowPane>
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <HBox alignment="CENTER_LEFT" minHeight="20.0" style="-fx-background-color: lightgray; -fx-border-color: gray;">
+         <children>
+            <Label text="Last updated:" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

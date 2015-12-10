@@ -44,7 +44,7 @@ public class MainController implements Initializable {
     /**
      * My variables
      */
-    public static ObservableList<Member> members = FXCollections.observableArrayList();
+    public ObservableList<Member> members = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -62,17 +62,21 @@ public class MainController implements Initializable {
         memberTable.setItems(members);
     }
 
+    public void addMember(Member member) {
+        members.add(member);
+    }
+
     /**
      * Open new window to add member
      */
     @FXML
-    public void addMember(ActionEvent actionEvent) {
+    public void addMemberAction(ActionEvent actionEvent) {
         Parent root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
             root = fxmlLoader.load();
             MemberController controller = fxmlLoader.<MemberController>getController();
-            controller.setMember(null);
+            controller.setupMember(null, this);
             Stage stage = new Stage();
             stage.setTitle("Member");
             stage.initModality(Modality.WINDOW_MODAL);
@@ -87,13 +91,14 @@ public class MainController implements Initializable {
      * Edit selected Member from table in new window
      */
     @FXML
-    public void editMember(ActionEvent actionEvent) {
+    public void editMemberAction(ActionEvent actionEvent) {
         Parent root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
             root = fxmlLoader.load();
             MemberController controller = fxmlLoader.<MemberController>getController();
-            setupController(controller);
+            Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
+            controller.setupMember(selectedMember, this);
             Stage stage = new Stage();
             stage.setTitle("Member");
             stage.initModality(Modality.WINDOW_MODAL);
@@ -104,17 +109,16 @@ public class MainController implements Initializable {
         }
     }
 
-    public void setupController(MemberController controller) {
-        Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
-        controller.setMember(selectedMember);
-        controller.getFirstNameTF().setText(selectedMember.getFirstName());
-        controller.getLastNameTF().setText(selectedMember.getLastName());
-    }
-
     /**
      * Delete selected Member from table
      */
     @FXML
-    public void deleteMember(ActionEvent actionEvent) {
+    public void deleteMemberAction(ActionEvent actionEvent) {
+
+    }
+
+    public void updateTable() {
+        memberTable.getColumns().get(0).setVisible(false);
+        memberTable.getColumns().get(0).setVisible(true);
     }
 }
