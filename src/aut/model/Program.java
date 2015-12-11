@@ -15,7 +15,7 @@ public class Program {
     private String description;
     private LocalDate dateAdded, lastModified;
     private HashMap<String, Exercise> exercises;
-    private PersonalTrainer personalTrainer;
+    private String personalTrainer;
 
     public Program(String description) {
         this.id = UUID.randomUUID().toString();
@@ -28,7 +28,7 @@ public class Program {
 
     /** Getters **/
 
-    public PersonalTrainer getPersonalTrainer() {
+    public String getPersonalTrainer() {
         return personalTrainer;
     }
 
@@ -66,7 +66,7 @@ public class Program {
         this.exercises = exercises;
     }
 
-    public void setPersonalTrainer(PersonalTrainer personalTrainer) {
+    public void setPersonalTrainer(String personalTrainer) {
         this.personalTrainer = personalTrainer;
     }
 

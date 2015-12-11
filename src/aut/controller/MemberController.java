@@ -140,17 +140,47 @@ public class MemberController implements Initializable {
 
     @FXML
     public void editProgramAction(ActionEvent actionEvent) {
-
+        Program program = programTable.getSelectionModel().getSelectedItem();
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/program.fxml"));
+            root = fxmlLoader.load();
+            ProgramController controller = fxmlLoader.<ProgramController>getController();
+            controller.setupProgramController(program, member, this);
+            Stage stage = new Stage();
+            stage.setTitle("Program");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void deleteProgramAction(ActionEvent actionEvent) {
+        Program program = programTable.getSelectionModel().getSelectedItem();
 
+        member.deleteProgram(program);
+        programs.remove(program);
     }
 
     @FXML
     private void addNewProgram(ActionEvent event) {
-
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/program.fxml"));
+            root = fxmlLoader.load();
+            ProgramController controller = fxmlLoader.<ProgramController>getController();
+            controller.setupProgramController(null, member, this);
+            Stage stage = new Stage();
+            stage.setTitle("Program");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

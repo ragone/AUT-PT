@@ -265,6 +265,7 @@ public class HealthCheckController implements Initializable {
         bodyMarkers.clear();
         canvas.getGraphicsContext2D().clearRect(0, 0, 600, 510);
         canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
+        notesTA.clear();
     }
 
     /** Methods **/

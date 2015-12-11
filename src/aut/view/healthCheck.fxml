@@ -12,7 +12,7 @@
    <children>
       <ToolBar>
         <items>
-          <Button fx:id="exitBtn" cancelButton="true" mnemonicParsing="false" onAction="#close" prefWidth="50.0" text="Exit">
+          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" style="-fx-graphic: &quot;file:images/exit.png&quot;;" text="Exit">
                <font>
                   <Font size="10.0" />
                </font>
@@ -22,7 +22,7 @@
                   <Insets left="4.0" />
                </padding>
             </Separator>
-            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#save" prefWidth="50.0" text="Save">
+            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" style="-fx-graphic: &quot;file:images/save.png&quot;;" text="Save">
                <font>
                   <Font size="10.0" />
                </font>
