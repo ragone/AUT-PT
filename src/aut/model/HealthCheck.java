@@ -13,7 +13,7 @@ public class HealthCheck {
     private String goal, goalTarget, programUsed, likes, dislikes, bmi, weight, rhr,
             whichDiseases, bp, sports;
     private PersonalTrainer personalTrainer;
-    private LocalDate dateAdded, dateModified;
+    private LocalDate dateAdded, lastModified;
     private boolean usedGym, usedWeights, haveDiseases, doneGroupFitness, usedPersonalTrainer,
             doneSports, haveActiveProgram;
     private ArrayList<Boolean> checkBoxes;
@@ -21,7 +21,7 @@ public class HealthCheck {
 
     public HealthCheck() {
         this.dateAdded = LocalDate.now();
-        this.dateModified = LocalDate.now();
+        this.lastModified = LocalDate.now();
         this.availableDays = 3.0;
         this.bmi = "";
         this.bp = "";
@@ -68,8 +68,8 @@ public class HealthCheck {
         return dateAdded;
     }
 
-    public LocalDate getDateModified() {
-        return dateModified;
+    public LocalDate getLastModified() {
+        return lastModified;
     }
 
     public String getDislikes() {
@@ -120,15 +120,15 @@ public class HealthCheck {
         return sports;
     }
 
-    public boolean isUsedGym() {
+    public boolean usedGym() {
         return usedGym;
     }
 
-    public boolean isUsedPersonalTrainer() {
+    public boolean usedPersonalTrainer() {
         return usedPersonalTrainer;
     }
 
-    public boolean isUsedWeights() {
+    public boolean usedWeights() {
         return usedWeights;
     }
 
@@ -166,8 +166,8 @@ public class HealthCheck {
         this.dateAdded = dateAdded;
     }
 
-    public void setDateModified(LocalDate dateModified) {
-        this.dateModified = dateModified;
+    public void setLastModified(LocalDate lastModified) {
+        this.lastModified = lastModified;
     }
 
     public void setDislikes(String dislikes) {

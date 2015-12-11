@@ -1,5 +1,6 @@
 package aut.controller;
 
+import aut.model.HealthCheck;
 import aut.model.Member;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -146,6 +148,7 @@ public class HealthCheckController implements Initializable {
     @FXML
     private ToolBar bodyToolBar;
 
+
     /** My variables **/
 
     private final int CIRCLE_DIA = 30;
@@ -153,7 +156,8 @@ public class HealthCheckController implements Initializable {
     private Member member;
     private ColorPicker bodyCP;
     private HashMap<Point2D, Color> bodyMarkers;
-    private boolean changed = false;
+    private MemberController controller;
+    private HealthCheck healthCheck;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -191,11 +195,55 @@ public class HealthCheckController implements Initializable {
 
     @FXML
     private void save(ActionEvent event) {
+        if(healthCheck == null) {
+            healthCheck = new HealthCheck();
+            member.addHealthCheck(healthCheck);
+            controller.healthChecks.add(healthCheck);
+        }
+        healthCheck.setGoal(goalTA.getText());
+        healthCheck.setGoalTarget(goalTargetTA.getText());
+        healthCheck.setUsedGym(usedGymYes.isSelected());
+        healthCheck.setProgramUsed(programUsedTF.getText());
+        healthCheck.setUsedWeights(doneWeightsYes.isSelected());
+        healthCheck.setLikes(likesTF.getText());
+        healthCheck.setDislikes(dislikesTF.getText());
+        healthCheck.setBmi(bmiTF.getText());
+        healthCheck.setWeight(weightTF.getText());
+        healthCheck.setRhr(rhrTF.getText());
+        healthCheck.setWhichDiseases(diseasesTF.getText());
+        healthCheck.setHaveDiseases(haveDiseasesYes.isSelected());
 
+        ArrayList<Boolean> cb = new ArrayList<>();
+        cb.add(CB1.isSelected());
+        cb.add(CB2.isSelected());
+        cb.add(CB3.isSelected());
+        cb.add(CB4.isSelected());
+        cb.add(CB5.isSelected());
+        cb.add(CB6.isSelected());
+        cb.add(CB7.isSelected());
+        cb.add(CB8.isSelected());
+        cb.add(CB9.isSelected());
+        cb.add(CB10.isSelected());
+        cb.add(CB11.isSelected());
+        cb.add(CB12.isSelected());
+        cb.add(CB13.isSelected());
+        cb.add(CB14.isSelected());
+        cb.add(CB15.isSelected());
+        cb.add(CB16.isSelected());
+        cb.add(CB17.isSelected());
+        cb.add(CB18.isSelected());
+        healthCheck.setCheckBoxes(cb);
 
+        healthCheck.setAvailableDays(availableDaysSlider.getValue());
+        healthCheck.setWorkoutTime(workoutTimeSlider.getValue());
+        healthCheck.setDoneGroupFitness(groupFitnessYes.isSelected());
+        healthCheck.setUsedPersonalTrainer(personalTrainerYes.isSelected());
+        healthCheck.setDoneSports(doneSportsYes.isSelected());
+        healthCheck.setBp(bpTF.getText());
+        healthCheck.setSports(sportsTF.getText());
 
+        controller.updateTables();
         saveBtn.setDisable(true);
-        changed = false;
     }
 
     @FXML
@@ -219,8 +267,6 @@ public class HealthCheckController implements Initializable {
     }
 
     /** Methods **/
-
-
 
     private void setupListeners() {
         MyChangeListener listener = new MyChangeListener();
@@ -263,24 +309,68 @@ public class HealthCheckController implements Initializable {
         sportsTF.textProperty().addListener(listener);
     }
 
+    public void setupHealthCheckController(HealthCheck healthCheck, Member member, MemberController memberController) {
+        this.controller = memberController;
+        this.member = member;
+        this.healthCheck = healthCheck;
+
+        if (healthCheck != null) {
+            goalTA.setText(healthCheck.getGoal());
+            goalTargetTA.setText(healthCheck.getGoalTarget());
+            gymUsed.selectToggle(healthCheck.usedGym() ? usedGymYes : usedGymNo);
+            programUsedTF.setText(healthCheck.getProgramUsed());
+            doneWeights.selectToggle(healthCheck.usedWeights() ? doneWeightsYes : doneWeightsNo);
+            likesTF.setText(healthCheck.getLikes());
+            dislikesTF.setText(healthCheck.getDislikes());
+            bmiTF.setText(healthCheck.getBmi());
+            weightTF.setText(healthCheck.getWeight());
+            rhrTF.setText(healthCheck.getRhr());
+            diseasesTF.setText(healthCheck.getWhichDiseases());
+            diseases.selectToggle(healthCheck.isHaveDiseases() ? haveDiseasesYes : haveDiseasesNo);
+
+            ArrayList<Boolean> cb = healthCheck.getCheckBoxes();
+            CB1.setSelected(cb.get(0));
+            CB2.setSelected(cb.get(1));
+            CB3.setSelected(cb.get(2));
+            CB4.setSelected(cb.get(3));
+            CB5.setSelected(cb.get(4));
+            CB6.setSelected(cb.get(5));
+            CB7.setSelected(cb.get(6));
+            CB8.setSelected(cb.get(7));
+            CB9.setSelected(cb.get(8));
+            CB10.setSelected(cb.get(9));
+            CB11.setSelected(cb.get(10));
+            CB12.setSelected(cb.get(11));
+            CB13.setSelected(cb.get(12));
+            CB14.setSelected(cb.get(13));
+            CB15.setSelected(cb.get(14));
+            CB16.setSelected(cb.get(15));
+            CB17.setSelected(cb.get(16));
+            CB18.setSelected(cb.get(17));
+
+            availableDaysSlider.setValue(healthCheck.getAvailableDays());
+            workoutTimeSlider.setValue(healthCheck.getWorkoutTime());
+            groupFitness.selectToggle(healthCheck.isDoneGroupFitness() ? groupFitnessYes : groupFitnessNo);
+            personalTrainer.selectToggle(healthCheck.usedPersonalTrainer() ? personalTrainerYes : personalTrainerNo);
+            doneSports.selectToggle(healthCheck.isDoneSports() ? doneSportsYes : doneSportsNo);
+            bpTF.setText(healthCheck.getBp());
+            sportsTF.setText(healthCheck.getSports());
+        }
+
+    }
+
     /** Inner class **/
 
     class MyChangeListener implements ChangeListener, EventHandler {
 
         @Override
         public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-            if (!changed) {
-                changed = true;
                 saveBtn.setDisable(false);
-            }
         }
 
         @Override
         public void handle(Event event) {
-            if (!changed) {
-                changed = true;
                 saveBtn.setDisable(false);
-            }
         }
 
     }

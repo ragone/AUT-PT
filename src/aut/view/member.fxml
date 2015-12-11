@@ -86,7 +86,7 @@
       </TitledPane>
       <TabPane tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab closable="false" text="Programs">
+          <Tab fx:id="programTab" closable="false" text="Programs">
                <content>
                   <VBox>
                      <children>
@@ -130,18 +130,18 @@
                   </VBox>
                </content>
             </Tab>
-          <Tab text="Health Checks">
+          <Tab fx:id="healthCheckTab" text="Health Checks">
                <content>
                   <VBox>
                      <children>
                         <ToolBar>
                            <items>
-                              <Button minWidth="50.0" mnemonicParsing="false" text="Add">
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#addNewHealthCheck" text="Add">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </Button>
-                              <Button minWidth="50.0" mnemonicParsing="false" text="Edit">
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#editHealthCheckAction" text="Edit">
                                  <font>
                                     <Font size="10.0" />
                                  </font>

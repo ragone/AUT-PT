@@ -13,14 +13,14 @@ import java.util.UUID;
 public class Program {
     private String id;
     private String description;
-    private LocalDate dateCreated, lastModified;
+    private LocalDate dateAdded, lastModified;
     private HashMap<String, Exercise> exercises;
     private PersonalTrainer personalTrainer;
 
     public Program(String description) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
-        this.dateCreated = LocalDate.now();
+        this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
         this.exercises = new HashMap<>();
         this.personalTrainer = null;
@@ -32,8 +32,8 @@ public class Program {
         return personalTrainer;
     }
 
-    public LocalDate getDateCreated() {
-        return dateCreated;
+    public LocalDate getDateAdded() {
+        return dateAdded;
     }
 
     public String getDescription() {
@@ -54,8 +54,8 @@ public class Program {
 
     /** Setters **/
 
-    public void setDateCreated(LocalDate dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDateAdded(LocalDate dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
     public void setDescription(String description) {

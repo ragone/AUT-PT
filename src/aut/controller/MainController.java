@@ -76,7 +76,7 @@ public class MainController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
             root = fxmlLoader.load();
             MemberController controller = fxmlLoader.<MemberController>getController();
-            controller.setupMember(null, this);
+            controller.setupMemberController(null, this);
             Stage stage = new Stage();
             stage.setTitle("Member");
             stage.initModality(Modality.WINDOW_MODAL);
@@ -92,20 +92,22 @@ public class MainController implements Initializable {
      */
     @FXML
     public void editMemberAction(ActionEvent actionEvent) {
-        Parent root;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
-            root = fxmlLoader.load();
-            MemberController controller = fxmlLoader.<MemberController>getController();
-            Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
-            controller.setupMember(selectedMember, this);
-            Stage stage = new Stage();
-            stage.setTitle("Member");
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
+        if (selectedMember != null) {
+            Parent root;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/member.fxml"));
+                root = fxmlLoader.load();
+                MemberController controller = fxmlLoader.<MemberController>getController();
+                controller.setupMemberController(selectedMember, this);
+                Stage stage = new Stage();
+                stage.setTitle("Member");
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -114,7 +116,8 @@ public class MainController implements Initializable {
      */
     @FXML
     public void deleteMemberAction(ActionEvent actionEvent) {
-
+        Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
+        members.remove(selectedMember);
     }
 
     public void updateTable() {

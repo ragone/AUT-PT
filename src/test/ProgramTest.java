@@ -7,8 +7,6 @@ import org.junit.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
-
 /**
  * TODO: Description of ProgramTest.
  *
@@ -31,7 +29,7 @@ public class ProgramTest {
 
     @Test
     public void texstGetDateCreated() throws Exception {
-        Assert.assertEquals(program.getDateCreated(), LocalDate.now());
+        Assert.assertEquals(program.getDateAdded(), LocalDate.now());
     }
 
     @Test
@@ -41,9 +39,9 @@ public class ProgramTest {
 
     @Test
     public void testSetDateCreated() throws Exception {
-        Assert.assertEquals(program.getDateCreated(), LocalDate.now());
-        program.setDateCreated(LocalDate.of(2014, 12, 24));
-        Assert.assertEquals(program.getDateCreated(), LocalDate.of(2014, 12, 24));
+        Assert.assertEquals(program.getDateAdded(), LocalDate.now());
+        program.setDateAdded(LocalDate.of(2014, 12, 24));
+        Assert.assertEquals(program.getDateAdded(), LocalDate.of(2014, 12, 24));
     }
 
     @Test

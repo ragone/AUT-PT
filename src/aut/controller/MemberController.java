@@ -39,15 +39,20 @@ import java.util.ResourceBundle;
  */
 public class MemberController implements Initializable {
 
+
     /** FXML variables **/
+    @FXML
+    private Tab healthCheckTab;
+    @FXML
+    private Tab programTab;
     @FXML
     private TableColumn<HealthCheck, String> lastModifiedHCCol;
     @FXML
     private TableColumn<Program, String> lastModifiedCol;
     @FXML
-    private TableView programTable;
+    private TableView<Program> programTable;
     @FXML
-    private TableView healthCheckTable;
+    private TableView<HealthCheck> healthCheckTable;
     @FXML
     private TextField firstNameTF;
     @FXML
@@ -90,6 +95,7 @@ public class MemberController implements Initializable {
         ageLabel.setText("");
 
         setupListeners();
+        setupTables();
     }
 
     /** Getters **/
@@ -107,8 +113,48 @@ public class MemberController implements Initializable {
     /** FXML methods **/
 
     @FXML
+    private void editHealthCheckAction(ActionEvent event) {
+        HealthCheck hc = healthCheckTable.getSelectionModel().getSelectedItem();
+
+        if(hc != null) {
+            Parent root;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/healthCheck.fxml"));
+                root = fxmlLoader.load();
+                HealthCheckController controller = fxmlLoader.<HealthCheckController>getController();
+                controller.setupHealthCheckController(hc, member, this);
+                Stage stage = new Stage();
+                stage.setTitle("Health Check");
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
     private void addNewProgram(ActionEvent event) {
 
+    }
+
+    @FXML
+    public void addNewHealthCheck(ActionEvent event) {
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/healthCheck.fxml"));
+            root = fxmlLoader.load();
+            HealthCheckController controller = fxmlLoader.<HealthCheckController>getController();
+            controller.setupHealthCheckController(null, member, this);
+            Stage stage = new Stage();
+            stage.setTitle("Health Check");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -130,6 +176,8 @@ public class MemberController implements Initializable {
 
         controller.updateTable();
 
+        programTab.setDisable(false);
+        healthCheckTab.setDisable(false);
         saveBtn.setDisable(true);
     }
     /** Methods **/
@@ -173,21 +221,31 @@ public class MemberController implements Initializable {
         gender.selectedToggleProperty().addListener(listener);
     }
 
-    public void setupMember(Member member, MainController controller) {
+    public void setupMemberController(Member member, MainController controller) {
         this.controller = controller;
 
         if(member != null) {
             this.member = member;
             firstNameTF.setText(member.getFirstName());
             lastNameTF.setText(member.getLastName());
-            if (dateOfBirthDP.getValue() != null) {
+            if(member.getDateOfBirth() != null) {
                 dateOfBirthDP.setValue(member.getDateOfBirth());
                 ageLabel.setText("(Age: " + getAge() + ")");
             }
             gender.selectToggle(member.getGender() == Gender.MALE ? male : female);
             programs.addAll(member.getPrograms());
             healthChecks.addAll(member.getHealthChecks());
+        } else {
+            programTab.setDisable(true);
+            healthCheckTab.setDisable(true);
         }
+    }
+
+    public void updateTables() {
+        healthCheckTable.getColumns().get(0).setVisible(false);
+        healthCheckTable.getColumns().get(0).setVisible(true);
+        programTable.getColumns().get(0).setVisible(false);
+        programTable.getColumns().get(0).setVisible(true);
     }
 
     /** Inner class **/
@@ -197,6 +255,7 @@ public class MemberController implements Initializable {
         @Override
         public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 saveBtn.setDisable(false);
+
         }
 
         @Override
