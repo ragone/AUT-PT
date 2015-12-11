@@ -4,6 +4,7 @@ import aut.model.Gender;
 import aut.model.HealthCheck;
 import aut.model.Member;
 import aut.model.Program;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,11 +28,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -97,6 +100,13 @@ public class MemberController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         saveBtn.setDisable(true);
         ageLabel.setText("");
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                firstNameTF.requestFocus();
+            }
+        });
 
         setupListeners();
         setupTables();
@@ -211,8 +221,35 @@ public class MemberController implements Initializable {
 
     @FXML
     private void close(ActionEvent event) {
-        Stage stage = (Stage) exitBtn.getScene().getWindow();
-        stage.close();
+        if(!saveBtn.isDisabled()) {
+            showSaveDialog();
+        } else {
+            stage.close();
+        }
+    }
+
+    private void showSaveDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Save?");
+        alert.setHeaderText("Would you like to save outstanding changes?");
+
+        ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(yes, no, cancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yes){
+            save(null);
+            stage.close();
+            alert.close();
+        } else if (result.get() == no) {
+            stage.close();
+            alert.close();
+        } else {
+            alert.close();
+        }
     }
 
     @FXML
@@ -329,7 +366,19 @@ public class MemberController implements Initializable {
 
         if(member != null) {
             stage.setTitle(member.toString());
+        } else {
+            stage.setTitle("New Member");
         }
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                if(!saveBtn.isDisabled()) {
+                    showSaveDialog();
+                } else {
+                    stage.close();
+                }
+            }
+        });
     }
 
 }

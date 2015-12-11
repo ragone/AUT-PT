@@ -2,6 +2,7 @@ package aut.controller;
 
 import aut.model.Member;
 import aut.model.Program;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -45,6 +46,12 @@ public class ProgramController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                descriptionTF.requestFocus();
+            }
+        });
         setupListeners();
     }
 

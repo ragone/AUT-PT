@@ -3,6 +3,7 @@ package aut.controller;
 import aut.model.BodyMarker;
 import aut.model.HealthCheck;
 import aut.model.Member;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -162,6 +163,13 @@ public class HealthCheckController implements Initializable {
         bodyCP.setMaxHeight(21.0);
         bodyCP.setMaxWidth(50.0);
         bodyToolBar.getItems().add(bodyCP);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                goalTA.requestFocus();
+            }
+        });
 
         bodyMarkers = new LinkedList<>();
         saveBtn.setDisable(true);

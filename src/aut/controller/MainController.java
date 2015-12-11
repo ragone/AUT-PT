@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,6 +58,7 @@ public class MainController implements Initializable {
      * My variables
      */
     public ObservableList<Member> members = FXCollections.observableArrayList();
+    private Stage stage;
 
     /**
      * Initializes the controller class.
@@ -100,7 +102,6 @@ public class MainController implements Initializable {
             controller.setupMemberController(null, this);
             Stage stage = new Stage();
             controller.setStage(stage);
-            stage.setTitle("New Member");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setScene(new Scene(root));
             stage.show();
@@ -146,5 +147,13 @@ public class MainController implements Initializable {
     public void updateTable() {
         memberTable.getColumns().get(0).setVisible(false);
         memberTable.getColumns().get(0).setVisible(true);
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }
