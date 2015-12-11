@@ -99,7 +99,8 @@ public class MainController implements Initializable {
             MemberController controller = fxmlLoader.<MemberController>getController();
             controller.setupMemberController(null, this);
             Stage stage = new Stage();
-            stage.setTitle("Member");
+            controller.setStage(stage);
+            stage.setTitle("New Member");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setScene(new Scene(root));
             stage.show();
@@ -121,8 +122,9 @@ public class MainController implements Initializable {
                 root = fxmlLoader.load();
                 MemberController controller = fxmlLoader.<MemberController>getController();
                 controller.setupMemberController(selectedMember, this);
+
                 Stage stage = new Stage();
-                stage.setTitle("Member");
+                controller.setStage(stage);
                 stage.initModality(Modality.WINDOW_MODAL);
                 stage.setScene(new Scene(root));
                 stage.show();

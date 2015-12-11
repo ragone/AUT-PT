@@ -91,6 +91,7 @@ public class MemberController implements Initializable {
     public ObservableList<HealthCheck> healthChecks = FXCollections.observableArrayList();
     private Member member;
     private MainController controller;
+    private Stage stage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -199,6 +200,7 @@ public class MemberController implements Initializable {
 
         programToolbar.setDisable(false);
         healthCheckToolbar.setDisable(false);
+        stage.setTitle(member.toString());
         saveBtn.setDisable(true);
 
     }
@@ -290,6 +292,14 @@ public class MemberController implements Initializable {
         healthCheckTable.getColumns().get(0).setVisible(true);
         programTable.getColumns().get(0).setVisible(false);
         programTable.getColumns().get(0).setVisible(true);
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+
+        if(member != null) {
+            stage.setTitle(member.toString());
+        }
     }
 
     /** Inner class **/
