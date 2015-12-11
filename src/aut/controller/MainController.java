@@ -9,9 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -40,6 +43,12 @@ public class MainController implements Initializable {
     private TableColumn<Member, String> personalTrainerCol;
     @FXML
     private TableColumn<Member, Date> dateAddedCol;
+    @FXML
+    private Button addBtn;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button deleteBtn;
 
     /**
      * My variables
@@ -52,6 +61,11 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setupMemberTable();
+
+        addBtn.setGraphic(new ImageView(new Image("file:images/add.png")));
+        editBtn.setGraphic(new ImageView(new Image("file:images/edit.png")));
+        deleteBtn.setGraphic(new ImageView(new Image("file:images/delete.png")));
+
     }
 
     private void setupMemberTable() {

@@ -21,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -93,6 +95,7 @@ public class MemberController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         saveBtn.setDisable(true);
         ageLabel.setText("");
+        saveBtn.setGraphic(new ImageView(new Image("file:images/save.png")));
 
         setupListeners();
         setupTables();
@@ -137,6 +140,14 @@ public class MemberController implements Initializable {
     @FXML
     private void addNewProgram(ActionEvent event) {
 
+    }
+
+    @FXML
+    public void deleteHealthCheckAction(ActionEvent actionEvent) {
+        HealthCheck hc = healthCheckTable.getSelectionModel().getSelectedItem();
+
+        member.deleteHealthCheck(hc);
+        healthChecks.remove(hc);
     }
 
     @FXML
@@ -239,6 +250,7 @@ public class MemberController implements Initializable {
             programTab.setDisable(true);
             healthCheckTab.setDisable(true);
         }
+        saveBtn.setDisable(true);
     }
 
     public void updateTables() {

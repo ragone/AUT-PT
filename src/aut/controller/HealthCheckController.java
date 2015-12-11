@@ -356,6 +356,7 @@ public class HealthCheckController implements Initializable {
             bpTF.setText(healthCheck.getBp());
             sportsTF.setText(healthCheck.getSports());
         }
+        saveBtn.setDisable(true);
 
     }
 
