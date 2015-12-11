@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aut.controller.MemberController">
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aut.controller.MemberController">
    <children>
       <ToolBar>
         <items>
-          <Button fx:id="exitBtn" cancelButton="true" mnemonicParsing="false" onAction="#close" prefWidth="50.0" text="Exit">
+          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" style="-fx-graphic: &quot;file:images/exit.png&quot;;" text="Exit">
                <font>
                   <Font size="10.0" />
                </font>
@@ -22,7 +22,7 @@
                   <Insets left="4.0" />
                </padding>
             </Separator>
-            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" text="Save">
+            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" style="-fx-graphic: &quot;file:images/save.png&quot;;" text="Save">
                <font>
                   <Font size="10.0" />
                </font>
@@ -101,12 +101,12 @@
                                     <Font size="10.0" />
                                  </font>
                               </MenuButton>
-                              <Button minWidth="50.0" mnemonicParsing="false" text="Edit">
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#editProgramAction" text="Edit">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </Button>
-                              <Button minWidth="50.0" mnemonicParsing="false" text="Delete">
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#deleteProgramAction" text="Delete">
                                  <font>
                                     <Font size="10.0" />
                                  </font>

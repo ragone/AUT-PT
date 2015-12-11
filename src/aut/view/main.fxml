@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
@@ -13,17 +14,17 @@
    <children>
       <ToolBar>
         <items>
-          <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addMemberAction" text="Add">
+          <Button mnemonicParsing="false" onAction="#addMemberAction" style="-fx-graphic: &quot;file:images/add.png&quot;;" text="Add">
                <font>
                   <Font size="12.0" />
                </font>
             </Button>
-            <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editMemberAction" text="Edit">
+            <Button mnemonicParsing="false" onAction="#editMemberAction" style="-fx-graphic: &quot;file:images/edit.png&quot;;" text="Edit">
                <font>
                   <Font size="12.0" />
                </font>
             </Button>
-            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deleteMemberAction" text="Delete">
+            <Button mnemonicParsing="false" onAction="#deleteMemberAction" style="-fx-graphic: &quot;file:images/delete.png&quot;;" text="Delete">
                <font>
                   <Font size="12.0" />
                </font>

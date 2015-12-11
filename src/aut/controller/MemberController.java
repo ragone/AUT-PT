@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -95,7 +96,6 @@ public class MemberController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         saveBtn.setDisable(true);
         ageLabel.setText("");
-        saveBtn.setGraphic(new ImageView(new Image("file:images/save.png")));
 
         setupListeners();
         setupTables();
@@ -135,6 +135,16 @@ public class MemberController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    public void editProgramAction(ActionEvent actionEvent) {
+
+    }
+
+    @FXML
+    public void deleteProgramAction(ActionEvent actionEvent) {
+
     }
 
     @FXML
@@ -183,7 +193,7 @@ public class MemberController implements Initializable {
         member.setFirstName(firstNameTF.getText());
         member.setLastName(lastNameTF.getText());
         member.setDateOfBirth(dateOfBirthDP.getValue());
-        member.setGender(gender.getSelectedToggle() == male ? Gender.MALE : Gender.FEMALE);
+        member.setGender(gender.getSelectedToggle() == female ? Gender.FEMALE : Gender.MALE);
 
         controller.updateTable();
 
@@ -203,6 +213,24 @@ public class MemberController implements Initializable {
         dateAddedHCCol.setCellValueFactory(new PropertyValueFactory<>("dateAdded"));
         lastModifiedHCCol.setCellValueFactory(new PropertyValueFactory<>("lastModified"));
         healthCheckTable.setItems(healthChecks);
+
+        healthCheckTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    editHealthCheckAction(null);
+                }
+            }
+        });
+
+        programTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    editProgramAction(null);
+                }
+            }
+        });
     }
 
     private String getAge() {
