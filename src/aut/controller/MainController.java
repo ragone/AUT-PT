@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -63,7 +64,6 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setupMemberTable();
-
     }
 
     private void setupMemberTable() {
@@ -80,6 +80,7 @@ public class MainController implements Initializable {
                 }
             }
         });
+        memberTable.setPlaceholder(new ImageView(new Image("file:images/bg.jpg")));
     }
 
     public void addMember(Member member) {
