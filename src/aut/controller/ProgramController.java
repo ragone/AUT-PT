@@ -81,25 +81,9 @@ public class ProgramController implements Initializable {
     }
 
     public void setupListeners() {
-        MyChangeListener listener = new MyChangeListener();
+        MyChangeListener listener = new MyChangeListener(saveBtn);
 
         descriptionTF.textProperty().addListener(listener);
         personalTrainerTF.textProperty().addListener(listener);
-    }
-
-    /** Inner class **/
-
-    class MyChangeListener implements ChangeListener, EventHandler {
-
-        @Override
-        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-            saveBtn.setDisable(false);
-        }
-
-        @Override
-        public void handle(Event event) {
-            saveBtn.setDisable(false);
-        }
-
     }
 }

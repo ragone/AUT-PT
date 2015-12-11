@@ -281,7 +281,7 @@ public class MemberController implements Initializable {
     }
 
     private void setupListeners() {
-        MyChangeListener listener = new MyChangeListener();
+        MyChangeListener listener = new MyChangeListener(saveBtn);
         firstNameTF.textProperty().addListener(listener);
         lastNameTF.textProperty().addListener(listener);
         dateOfBirthDP.armedProperty().addListener(new ChangeListener<Boolean>() {
@@ -330,23 +330,6 @@ public class MemberController implements Initializable {
         if(member != null) {
             stage.setTitle(member.toString());
         }
-    }
-
-    /** Inner class **/
-
-    class MyChangeListener implements ChangeListener, EventHandler {
-
-        @Override
-        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                saveBtn.setDisable(false);
-
-        }
-
-        @Override
-        public void handle(Event event) {
-                saveBtn.setDisable(false);
-        }
-
     }
 
 }

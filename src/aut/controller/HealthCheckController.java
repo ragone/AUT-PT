@@ -271,7 +271,7 @@ public class HealthCheckController implements Initializable {
     /** Methods **/
 
     private void setupListeners() {
-        MyChangeListener listener = new MyChangeListener();
+        MyChangeListener listener = new MyChangeListener(saveBtn);
         goalTA.textProperty().addListener(listener);
         goalTargetTA.textProperty().addListener(listener);
         gymUsed.selectedToggleProperty().addListener(listener);
@@ -378,22 +378,6 @@ public class HealthCheckController implements Initializable {
             gc.setLineWidth(5.0);
             gc.strokeOval(bodyMarkers.get(i).getPoint().getX() - CIRCLE_DIA / 2, bodyMarkers.get(i).getPoint().getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
         }
-    }
-
-    /** Inner class **/
-
-    class MyChangeListener implements ChangeListener, EventHandler {
-
-        @Override
-        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                saveBtn.setDisable(false);
-        }
-
-        @Override
-        public void handle(Event event) {
-                saveBtn.setDisable(false);
-        }
-
     }
 
 }
