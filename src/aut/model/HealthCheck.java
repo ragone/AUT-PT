@@ -1,7 +1,13 @@
 package aut.model;
 
+import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * TODO: Description of HealthCheck.
@@ -10,8 +16,27 @@ import java.util.ArrayList;
  * @version 9/12/15
  */
 public class HealthCheck {
-    private String goal, goalTarget, programUsed, likes, dislikes, bmi, weight, rhr,
-            whichDiseases, bp, sports;
+    private String goal;
+    private String goalTarget;
+    private String programUsed;
+    private String likes;
+    private String dislikes;
+    private String bmi;
+    private String weight;
+    private String rhr;
+    private String whichDiseases;
+    private String bp;
+    private String sports;
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    private String notes;
     private PersonalTrainer personalTrainer;
     private LocalDate dateAdded, lastModified;
     private boolean usedGym, usedWeights, haveDiseases, doneGroupFitness, usedPersonalTrainer,
@@ -19,7 +44,10 @@ public class HealthCheck {
     private ArrayList<Boolean> checkBoxes;
     private Double availableDays, workoutTime;
 
+    private LinkedList<BodyMarker> bodyMarkers;
+
     public HealthCheck() {
+        this.bodyMarkers = new LinkedList<>();
         this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
         this.availableDays = 3.0;
@@ -47,6 +75,10 @@ public class HealthCheck {
     }
 
     /** Getters **/
+
+    public LinkedList<BodyMarker> getBodyMarkers() {
+        return bodyMarkers;
+    }
 
     public Double getAvailableDays() {
         return availableDays;
@@ -145,6 +177,10 @@ public class HealthCheck {
     }
 
     /** Setters **/
+
+    public void setBodyMarkers(LinkedList<BodyMarker> bodyMarkers) {
+        this.bodyMarkers = bodyMarkers;
+    }
 
     public void setAvailableDays(Double availableDays) {
         this.availableDays = availableDays;

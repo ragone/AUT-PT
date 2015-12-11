@@ -45,9 +45,9 @@ public class MemberController implements Initializable {
 
     /** FXML variables **/
     @FXML
-    private Tab healthCheckTab;
+    private ToolBar healthCheckToolbar;
     @FXML
-    private Tab programTab;
+    private ToolBar programToolbar;
     @FXML
     private TableColumn<HealthCheck, String> lastModifiedHCCol;
     @FXML
@@ -197,9 +197,10 @@ public class MemberController implements Initializable {
 
         controller.updateTable();
 
-        programTab.setDisable(false);
-        healthCheckTab.setDisable(false);
+        programToolbar.setDisable(false);
+        healthCheckToolbar.setDisable(false);
         saveBtn.setDisable(true);
+
     }
     /** Methods **/
 
@@ -231,6 +232,9 @@ public class MemberController implements Initializable {
                 }
             }
         });
+
+        programTable.setPlaceholder(new Label("No programs added"));
+        healthCheckTable.setPlaceholder(new Label("No health checks added"));
     }
 
     private String getAge() {
@@ -275,8 +279,8 @@ public class MemberController implements Initializable {
             programs.addAll(member.getPrograms());
             healthChecks.addAll(member.getHealthChecks());
         } else {
-            programTab.setDisable(true);
-            healthCheckTab.setDisable(true);
+            programToolbar.setDisable(true);
+            healthCheckToolbar.setDisable(true);
         }
         saveBtn.setDisable(true);
     }

@@ -1,5 +1,6 @@
 package aut.controller;
 
+import aut.model.BodyMarker;
 import aut.model.HealthCheck;
 import aut.model.Member;
 import javafx.beans.value.ChangeListener;
@@ -18,16 +19,11 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * TODO: Description of MemberController.
@@ -37,6 +33,7 @@ import java.util.ResourceBundle;
  */
 public class HealthCheckController implements Initializable {
 
+    public TextArea notesTA;
     /** FXML variables **/
 
     @FXML
@@ -155,7 +152,7 @@ public class HealthCheckController implements Initializable {
 
     private Member member;
     private ColorPicker bodyCP;
-    private HashMap<Point2D, Color> bodyMarkers;
+    private LinkedList<BodyMarker> bodyMarkers;
     private MemberController controller;
     private HealthCheck healthCheck;
 
@@ -166,7 +163,7 @@ public class HealthCheckController implements Initializable {
         bodyCP.setMaxWidth(50.0);
         bodyToolBar.getItems().add(bodyCP);
 
-        bodyMarkers = new HashMap<>();
+        bodyMarkers = new LinkedList<>();
         saveBtn.setDisable(true);
         canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
 
@@ -200,6 +197,7 @@ public class HealthCheckController implements Initializable {
             member.addHealthCheck(healthCheck);
             controller.healthChecks.add(healthCheck);
         }
+        healthCheck.setBodyMarkers(bodyMarkers);
         healthCheck.setGoal(goalTA.getText());
         healthCheck.setGoalTarget(goalTargetTA.getText());
         healthCheck.setUsedGym(usedGymYes.isSelected());
@@ -212,6 +210,7 @@ public class HealthCheckController implements Initializable {
         healthCheck.setRhr(rhrTF.getText());
         healthCheck.setWhichDiseases(diseasesTF.getText());
         healthCheck.setHaveDiseases(haveDiseasesYes.isSelected());
+        healthCheck.setNotes(notesTA.getText());
 
         ArrayList<Boolean> cb = new ArrayList<>();
         cb.add(CB1.isSelected());
@@ -248,7 +247,7 @@ public class HealthCheckController implements Initializable {
 
     @FXML
     private void drawCanvas(MouseEvent event) {
-        bodyMarkers.put(new Point2D(event.getX(), event.getY()), bodyCP.getValue());
+        bodyMarkers.add(new BodyMarker(new Point2D(event.getX(), event.getY()), bodyCP.getValue()));
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setStroke(bodyCP.getValue());
         gc.setLineWidth(1.0);
@@ -257,6 +256,8 @@ public class HealthCheckController implements Initializable {
         gc.strokeText("" + bodyMarkers.size(), event.getX(), event.getY(), CIRCLE_DIA);
         gc.setLineWidth(5.0);
         gc.strokeOval(event.getX() - CIRCLE_DIA / 2, event.getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
+        saveBtn.setDisable(false);
+        notesTA.appendText("Note " + bodyMarkers.size() + " - \n");
     }
 
     @FXML
@@ -282,6 +283,8 @@ public class HealthCheckController implements Initializable {
         rhrTF.textProperty().addListener(listener);
         diseasesTF.textProperty().addListener(listener);
         diseases.selectedToggleProperty().addListener(listener);
+        notesTA.textProperty().addListener(listener);
+
         CB1.armedProperty().addListener(listener);
         CB2.armedProperty().addListener(listener);
         CB3.armedProperty().addListener(listener);
@@ -355,9 +358,25 @@ public class HealthCheckController implements Initializable {
             doneSports.selectToggle(healthCheck.isDoneSports() ? doneSportsYes : doneSportsNo);
             bpTF.setText(healthCheck.getBp());
             sportsTF.setText(healthCheck.getSports());
+            notesTA.setText(healthCheck.getNotes());
+            setupCanvas();
         }
         saveBtn.setDisable(true);
 
+    }
+
+    private void setupCanvas() {
+        bodyMarkers = healthCheck.getBodyMarkers();
+        for(int i = 0 ; i < bodyMarkers.size() ; i++){
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            gc.setStroke(bodyMarkers.get(i).getColor());
+            gc.setLineWidth(1.0);
+            gc.setTextBaseline(VPos.CENTER);
+            gc.setTextAlign(TextAlignment.CENTER);
+            gc.strokeText("" + (i + 1), bodyMarkers.get(i).getPoint().getX(), bodyMarkers.get(i).getPoint().getY(), CIRCLE_DIA);
+            gc.setLineWidth(5.0);
+            gc.strokeOval(bodyMarkers.get(i).getPoint().getX() - CIRCLE_DIA / 2, bodyMarkers.get(i).getPoint().getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
+        }
     }
 
     /** Inner class **/

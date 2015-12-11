@@ -344,7 +344,7 @@
                            <children>
                               <TitledPane collapsible="false" text="Notes">
                                  <content>
-                                    <TextArea prefRowCount="4" />
+                                    <TextArea fx:id="notesTA" prefRowCount="4" />
                                  </content>
                               </TitledPane>
                               <TitledPane collapsible="false" focusTraversable="false" text="Body Map">
