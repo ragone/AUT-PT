@@ -3,11 +3,7 @@ package aut.controller;
 import aut.model.Member;
 import aut.model.Program;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -82,7 +78,7 @@ public class ProgramController implements Initializable {
 
         if (program != null) {
             descriptionTF.setText(program.getDescription());
-            personalTrainerTF.setText(program.getPersonalTrainer().toString());
+            personalTrainerTF.setText(program.getPersonalTrainer());
         }
         saveBtn.setDisable(true);
     }

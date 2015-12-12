@@ -4,11 +4,7 @@ import aut.model.BodyMarker;
 import aut.model.HealthCheck;
 import aut.model.Member;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
@@ -24,7 +20,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 
 /**
  * TODO: Description of MemberController.

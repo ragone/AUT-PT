@@ -3,7 +3,10 @@ package test;
 import aut.model.HealthCheck;
 import aut.model.Member;
 import aut.model.Program;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.time.LocalDate;
 

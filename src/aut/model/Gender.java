@@ -7,5 +7,5 @@ package aut.model;
  * @version 10/12/15
  */
 public enum Gender {
-    MALE, FEMALE;
+    MALE, FEMALE
 }

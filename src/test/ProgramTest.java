@@ -2,7 +2,10 @@ package test;
 
 import aut.model.Exercise;
 import aut.model.Program;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -28,7 +31,7 @@ public class ProgramTest {
     }
 
     @Test
-    public void texstGetDateCreated() throws Exception {
+    public void testGetDateCreated() throws Exception {
         Assert.assertEquals(program.getDateAdded(), LocalDate.now());
     }
 

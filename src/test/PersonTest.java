@@ -1,14 +1,11 @@
 package test;
 
 import aut.model.Member;
-import aut.model.Person;
 import aut.model.PersonalTrainer;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * TODO: Description of PersonTest.
