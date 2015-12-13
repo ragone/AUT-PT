@@ -6,8 +6,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -36,6 +38,12 @@ public class ProgramController implements Initializable {
     @FXML
     private TextField personalTrainerTF;
 
+    @FXML
+    private Accordion daysAcc;
+
+    @FXML
+    private TitledPane mondayTP;
+
     private Program program;
     private MemberController controller;
     private Member member;
@@ -48,6 +56,7 @@ public class ProgramController implements Initializable {
                 descriptionTF.requestFocus();
             }
         });
+        daysAcc.setExpandedPane(mondayTP);
         setupListeners();
     }
 
