@@ -55,12 +55,7 @@ public class ProgramController implements Initializable {
         exitBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CLOSE));
         saveBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.SAVE));
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                descriptionTF.requestFocus();
-            }
-        });
+        Platform.runLater(() -> descriptionTF.requestFocus());
         daysAcc.setExpandedPane(mondayTP);
         setupListeners();
     }

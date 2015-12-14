@@ -165,12 +165,7 @@ public class HealthCheckController implements Initializable {
         exitBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CLOSE));
         saveBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.SAVE));
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                goalTA.requestFocus();
-            }
-        });
+        Platform.runLater(() -> goalTA.requestFocus());
 
         bodyMarkers = new LinkedList<>();
         saveBtn.setDisable(true);

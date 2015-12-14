@@ -86,8 +86,8 @@ public class MemberController implements Initializable {
 
     /** My variables **/
 
-    public ObservableList<Program> programs = FXCollections.observableArrayList();
-    public ObservableList<HealthCheck> healthChecks = FXCollections.observableArrayList();
+    public final ObservableList<Program> programs = FXCollections.observableArrayList();
+    public final ObservableList<HealthCheck> healthChecks = FXCollections.observableArrayList();
     private Member member;
     private MainController controller;
     private Stage stage;
@@ -99,27 +99,10 @@ public class MemberController implements Initializable {
         exitBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CLOSE));
         saveBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.SAVE));
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                firstNameTF.requestFocus();
-            }
-        });
+        Platform.runLater(() -> firstNameTF.requestFocus());
 
         setupListeners();
         setupTables();
-    }
-
-    /** Getters **/
-
-    public Member getMember() {
-        return member;
-    }
-
-    /** Setters **/
-
-    public void setMember(Member member) {
-        this.member = member;
     }
 
     /** FXML methods **/
@@ -282,21 +265,15 @@ public class MemberController implements Initializable {
         lastModifiedHCCol.setCellValueFactory(new PropertyValueFactory<>("lastModified"));
         healthCheckTable.setItems(healthChecks);
 
-        healthCheckTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    editHealthCheckAction(null);
-                }
+        healthCheckTable.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                editHealthCheckAction(null);
             }
         });
 
-        programTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    editProgramAction(null);
-                }
+        programTable.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                editProgramAction(null);
             }
         });
 
@@ -317,14 +294,11 @@ public class MemberController implements Initializable {
         MyChangeListener listener = new MyChangeListener(saveBtn);
         firstNameTF.textProperty().addListener(listener);
         lastNameTF.textProperty().addListener(listener);
-        dateOfBirthDP.armedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (dateOfBirthDP.getValue() != null) {
-                    ageLabel.setText("(Age: " + getAge() + ")");
-                }
-                    saveBtn.setDisable(false);
+        dateOfBirthDP.armedProperty().addListener((observable, oldValue, newValue) -> {
+            if (dateOfBirthDP.getValue() != null) {
+                ageLabel.setText("(Age: " + getAge() + ")");
             }
+                saveBtn.setDisable(false);
         });
         gender.selectedToggleProperty().addListener(listener);
     }
@@ -366,13 +340,11 @@ public class MemberController implements Initializable {
             stage.setTitle("New Member");
         }
 
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent we) {
-                if(!saveBtn.isDisabled()) {
-                    showSaveDialog();
-                } else {
-                    stage.close();
-                }
+        stage.setOnCloseRequest(we -> {
+            if(!saveBtn.isDisabled()) {
+                showSaveDialog();
+            } else {
+                stage.close();
             }
         });
     }

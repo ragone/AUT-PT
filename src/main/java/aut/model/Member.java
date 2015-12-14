@@ -11,8 +11,8 @@ import java.util.LinkedList;
  */
 public class Member extends Person {
 
-    private LinkedList<HealthCheck> healthChecks;
-    private LinkedList<Program> programs;
+    private final LinkedList<HealthCheck> healthChecks;
+    private final LinkedList<Program> programs;
 
     /** Constructor **/
 

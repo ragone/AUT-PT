@@ -6,7 +6,6 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -57,8 +55,7 @@ public class MainController implements Initializable {
     /**
      * My variables
      */
-    public ObservableList<Member> members = FXCollections.observableArrayList();
-    private Stage stage;
+    public final ObservableList<Member> members = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -78,12 +75,9 @@ public class MainController implements Initializable {
         personalTrainerCol.setCellValueFactory(new PropertyValueFactory<>("personalTrainer"));
         dateAddedCol.setCellValueFactory(new PropertyValueFactory<>("dateAdded"));
         memberTable.setItems(members);
-        memberTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    editMemberAction(null);
-                }
+        memberTable.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                editMemberAction();
             }
         });
         memberTable.setPlaceholder(new ImageView(new Image("images/bg.jpg")));
@@ -118,7 +112,7 @@ public class MainController implements Initializable {
      * Edit selected Member from table in new window
      */
     @FXML
-    public void editMemberAction(ActionEvent actionEvent) {
+    public void editMemberAction() {
         Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
         if (selectedMember != null) {
             Parent root;
@@ -153,11 +147,4 @@ public class MainController implements Initializable {
         memberTable.getColumns().get(0).setVisible(true);
     }
 
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 }

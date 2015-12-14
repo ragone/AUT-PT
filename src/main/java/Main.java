@@ -1,4 +1,3 @@
-import aut.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,9 +15,7 @@ public class Main extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/main.fxml"));
             root = fxmlLoader.load();
-            MainController controller = fxmlLoader.<MainController>getController();
             Stage stage = new Stage();
-            controller.setStage(stage);
             stage.getIcons().addAll(new Image("images/icon16.png"),
                     new Image("images/icon16.png"),
                     new Image("images/icon64.png"),
