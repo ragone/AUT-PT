@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aut.controller.HealthCheckController">
    <children>
       <ToolBar>
         <items>
-          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" style="-fx-graphic: &quot;file:images/exit.png&quot;;" text="Exit">
+          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" text="Exit">
                <font>
-                  <Font size="10.0" />
+                  <Font size="12.0" />
                </font>
             </Button>
             <Separator orientation="VERTICAL">
@@ -19,9 +24,9 @@
                   <Insets left="4.0" />
                </padding>
             </Separator>
-            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" style="-fx-graphic: &quot;file:images/save.png&quot;;" text="Save">
+            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" text="Save">
                <font>
-                  <Font size="10.0" />
+                  <Font size="12.0" />
                </font>
             </Button>
         </items>
@@ -352,7 +357,7 @@
                                             <items>
                                               <Button mnemonicParsing="false" onAction="#clearCanvas" text="Clear All">
                                                    <font>
-                                                      <Font size="10.0" />
+                                                      <Font size="12.0" />
                                                    </font>
                                                 </Button>
                                                 <Separator orientation="VERTICAL" />

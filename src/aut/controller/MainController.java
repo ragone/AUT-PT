@@ -1,6 +1,8 @@
 package aut.controller;
 
 import aut.model.Member;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,6 +65,10 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        addBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.PLUS));
+        editBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.EDIT));
+        deleteBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.TRASH));
+
         setupMemberTable();
     }
 

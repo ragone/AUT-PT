@@ -3,6 +3,9 @@ package aut.controller;
 import aut.model.BodyMarker;
 import aut.model.HealthCheck;
 import aut.model.Member;
+import com.jfoenix.controls.JFXColorPicker;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -158,9 +161,10 @@ public class HealthCheckController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bodyCP = new ColorPicker(Color.BLACK);
-        bodyCP.setMaxHeight(21.0);
-        bodyCP.setMaxWidth(50.0);
         bodyToolBar.getItems().add(bodyCP);
+
+        exitBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CLOSE));
+        saveBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.SAVE));
 
         Platform.runLater(new Runnable() {
             @Override

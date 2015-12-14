@@ -11,9 +11,9 @@
    <children>
       <ToolBar>
         <items>
-          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" style="-fx-graphic: &quot;file:images/exit.png&quot;;" text="Exit">
+          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" text="Exit">
                <font>
-                  <Font size="10.0" />
+                  <Font size="12.0" />
                </font>
             </Button>
             <Separator orientation="VERTICAL">
@@ -21,9 +21,9 @@
                   <Insets left="4.0" />
                </padding>
             </Separator>
-            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" style="-fx-graphic: &quot;file:images/save.png&quot;;" text="Save">
+            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" text="Save">
                <font>
-                  <Font size="10.0" />
+                  <Font size="12.0" />
                </font>
             </Button>
         </items>

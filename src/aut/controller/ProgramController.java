@@ -2,6 +2,8 @@ package aut.controller;
 
 import aut.model.Member;
 import aut.model.Program;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +52,9 @@ public class ProgramController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        exitBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CLOSE));
+        saveBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.SAVE));
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
