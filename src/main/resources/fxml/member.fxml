@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aut.controller.MemberController">
+   <children>
+      <ToolBar>
+        <items>
+          <Button fx:id="exitBtn" cancelButton="true" minWidth="50.0" mnemonicParsing="false" onAction="#close" text="Exit">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL">
+               <padding>
+                  <Insets left="4.0" />
+               </padding>
+            </Separator>
+            <Button fx:id="saveBtn" minWidth="50.0" mnemonicParsing="false" onAction="#save" text="Save">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+      <TitledPane accessibleRoleDescription="Details" animated="false" collapsible="false" text="Details">
+         <content>
+            <VBox spacing="20.0">
+               <children>
+                  <GridPane hgap="10.0" vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="First name:" />
+                        <TextField fx:id="firstNameTF" GridPane.columnIndex="1" />
+                        <TextField fx:id="lastNameTF" GridPane.columnIndex="3" />
+                        <Label text="Last name:" GridPane.columnIndex="2" />
+                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <DatePicker fx:id="dateOfBirthDP" promptText="dd/mm/yyyy" />
+                              <Pane maxWidth="20.0" minWidth="20.0" />
+                              <Label fx:id="ageLabel" text="(Age 27)">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets top="4.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="Gender:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <FlowPane alignment="CENTER_LEFT" hgap="10.0" prefWidth="200.0" rowValignment="TOP" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <children>
+                              <RadioButton fx:id="male" mnemonicParsing="false" text="Male">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="gender" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="female" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                           </children>
+                        </FlowPane>
+                        <Label text="Date of birth:" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab closable="false" text="Programs">
+               <content>
+                  <VBox>
+                     <children>
+                        <ToolBar fx:id="programToolbar">
+                           <items>
+                              <MenuButton minWidth="50.0" mnemonicParsing="false" text="Add">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#addNewProgram" text="Add Program" />
+                                    <MenuItem mnemonicParsing="false" text="Add from Template" />
+                                 </items>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </MenuButton>
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#editProgramAction" text="Edit">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#deleteProgramAction" text="Delete">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                        <TableView fx:id="programTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="descriptionCol" minWidth="50.0" prefWidth="289.0" text="Description" />
+                              <TableColumn fx:id="dateAddedCol" prefWidth="172.0" text="Date Added" />
+                              <TableColumn fx:id="lastModifiedCol" prefWidth="172.0" text="Last Modified" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets top="-1.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+          <Tab text="Health Checks">
+               <content>
+                  <VBox>
+                     <children>
+                        <ToolBar fx:id="healthCheckToolbar">
+                           <items>
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#addNewHealthCheck" text="Add">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#editHealthCheckAction" text="Edit">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button minWidth="50.0" mnemonicParsing="false" onAction="#deleteHealthCheckAction" text="Delete">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                        <TableView fx:id="healthCheckTable" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="personalTrainerCol" minWidth="50.0" prefWidth="289.0" text="Description" />
+                              <TableColumn fx:id="dateAddedHCCol" prefWidth="172.0" text="Date Added" />
+                              <TableColumn fx:id="lastModifiedHCCol" prefWidth="172.0" text="Last Modified" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets top="-1.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+        </tabs>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </TabPane>
+      <HBox alignment="CENTER_LEFT" minHeight="20.0" style="-fx-background-color: lightgray; -fx-border-color: gray;">
+         <children>
+            <Label text="Last updated:" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
