@@ -8,7 +8,7 @@ import java.util.UUID;
  * @author ragone.
  * @version 9/12/15
  */
-public class Exercise {
+class Exercise {
     private int reps, sets, restTime;
     private String id, notes;
 
