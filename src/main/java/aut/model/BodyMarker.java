@@ -11,16 +11,18 @@ import javafx.scene.paint.Color;
  */
 public class BodyMarker {
 
-    private Point2D point;
+    private double x;
+    private double y;
     private Color color;
 
     public BodyMarker() {
-        this(new Point2D(0,0), Color.BLACK);
+        this(0 , 0, Color.BLACK);
     }
 
-    public BodyMarker(Point2D point, Color color) {
+    public BodyMarker(double x, double y, Color color) {
         this.color = color;
-        this.point = point;
+        this.x = x;
+        this.y = y;
     }
 
     public Color getColor() {
@@ -31,12 +33,19 @@ public class BodyMarker {
         this.color = color;
     }
 
-    public Point2D getPoint() {
-        return point;
+    public double getX() {
+        return x;
     }
 
-    public void setPoint(Point2D point) {
-        this.point = point;
+    public void setX(double x) {
+        this.x = x;
     }
 
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
 }

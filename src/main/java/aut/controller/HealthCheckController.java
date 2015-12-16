@@ -169,7 +169,7 @@ public class HealthCheckController implements Initializable {
         Platform.runLater(() -> goalTA.requestFocus());
 
         saveBtn.setDisable(true);
-        canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
+        canvas.getGraphicsContext2D().drawImage(new Image("images/body.png"), 0, 0);
 
         setupListeners();
     }
@@ -251,7 +251,7 @@ public class HealthCheckController implements Initializable {
 
     @FXML
     private void drawCanvas(MouseEvent event) {
-        bodyMarkers.add(new BodyMarker(new Point2D(event.getX(), event.getY()), bodyCP.getValue()));
+        bodyMarkers.add(new BodyMarker(event.getX(), event.getY(), bodyCP.getValue()));
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setStroke(bodyCP.getValue());
         gc.setLineWidth(1.0);
@@ -268,7 +268,7 @@ public class HealthCheckController implements Initializable {
     private void clearCanvas(ActionEvent event) {
         bodyMarkers.clear();
         canvas.getGraphicsContext2D().clearRect(0, 0, 600, 510);
-        canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
+        canvas.getGraphicsContext2D().drawImage(new Image("images/body.png"), 0, 0);
         notesTA.clear();
     }
 
@@ -378,9 +378,9 @@ public class HealthCheckController implements Initializable {
             gc.setLineWidth(1.0);
             gc.setTextBaseline(VPos.CENTER);
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.strokeText("" + (i + 1), bodyMarkers.get(i).getPoint().getX(), bodyMarkers.get(i).getPoint().getY(), CIRCLE_DIA);
+            gc.strokeText("" + (i + 1), bodyMarkers.get(i).getX(), bodyMarkers.get(i).getY(), CIRCLE_DIA);
             gc.setLineWidth(5.0);
-            gc.strokeOval(bodyMarkers.get(i).getPoint().getX() - CIRCLE_DIA / 2, bodyMarkers.get(i).getPoint().getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
+            gc.strokeOval(bodyMarkers.get(i).getX() - CIRCLE_DIA / 2, bodyMarkers.get(i).getY() - CIRCLE_DIA / 2, CIRCLE_DIA, CIRCLE_DIA);
         }
     }
 
