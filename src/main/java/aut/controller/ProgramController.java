@@ -69,7 +69,7 @@ public class ProgramController implements Initializable {
     @FXML
     void save(ActionEvent event) {
         if(program == null) {
-            program = new Program(descriptionTF.getText());
+            program = new Program(member, descriptionTF.getText());
             member.addProgram(program);
             controller.programs.add(program);
         }

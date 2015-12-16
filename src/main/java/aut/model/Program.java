@@ -1,7 +1,9 @@
 package aut.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -11,18 +13,24 @@ import java.util.UUID;
  * @version 9/12/15
  */
 public class Program {
-    private String id;
+    private Member member;
+    private long id;
     private String description;
-    private LocalDate dateAdded, lastModified;
-    private HashMap<String, Exercise> exercises;
+    private LocalDate dateAdded;
+    private LocalDate lastModified;
+    private List<Exercise> exercises = new ArrayList<>();
     private String personalTrainer;
 
-    public Program(String description) {
-        this.id = UUID.randomUUID().toString();
+    public Program() {
+        this(null, "");
+        // used by hibernate
+    }
+
+    public Program(Member member, String description) {
+        this.member = member;
         this.description = description;
         this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
-        this.exercises = new HashMap<>();
         this.personalTrainer = null;
     }
 
@@ -40,17 +48,22 @@ public class Program {
         return description;
     }
 
-    public String getId() {
+    public Member getMember() {
+        return member;
+    }
+
+    public long getId() {
         return id;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
     public LocalDate getLastModified() {
         return lastModified;
     }
 
-    public HashMap<String, Exercise> getExercises() {
-        return exercises;
-    }
 
     /** Setters **/
 
@@ -62,7 +75,11 @@ public class Program {
         this.description = description;
     }
 
-    public void setExercises(HashMap<String, Exercise> exercises) {
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
     }
 
@@ -70,7 +87,7 @@ public class Program {
         this.personalTrainer = personalTrainer;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -81,11 +98,11 @@ public class Program {
     /** Methods **/
 
     public void addExercise(Exercise exercise) {
-        exercises.put(exercise.getId(), exercise);
+        exercises.add(exercise);
     }
 
     public void deleteExercise(Exercise exercise) {
-        exercises.remove(exercise.getId());
+        exercises.remove(exercise);
     }
 
     @Override

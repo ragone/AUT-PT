@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -152,7 +153,6 @@
                         </ToolBar>
                         <TableView fx:id="healthCheckTable" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="personalTrainerCol" minWidth="50.0" prefWidth="289.0" text="Description" />
                               <TableColumn fx:id="dateAddedHCCol" prefWidth="172.0" text="Date Added" />
                               <TableColumn fx:id="lastModifiedHCCol" prefWidth="172.0" text="Last Modified" />
                            </columns>

@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -153,7 +154,7 @@ public class HealthCheckController implements Initializable {
 
     private Member member;
     private ColorPicker bodyCP;
-    private LinkedList<BodyMarker> bodyMarkers;
+    private List<BodyMarker> bodyMarkers = new LinkedList<>();
     private MemberController controller;
     private HealthCheck healthCheck;
 
@@ -167,7 +168,6 @@ public class HealthCheckController implements Initializable {
 
         Platform.runLater(() -> goalTA.requestFocus());
 
-        bodyMarkers = new LinkedList<>();
         saveBtn.setDisable(true);
         canvas.getGraphicsContext2D().drawImage(new Image("file:images/body.png"), 0, 0);
 
@@ -197,7 +197,7 @@ public class HealthCheckController implements Initializable {
     @FXML
     private void save(ActionEvent event) {
         if(healthCheck == null) {
-            healthCheck = new HealthCheck();
+            healthCheck = new HealthCheck(member);
             member.addHealthCheck(healthCheck);
             controller.healthChecks.add(healthCheck);
         }
@@ -325,9 +325,9 @@ public class HealthCheckController implements Initializable {
         if (healthCheck != null) {
             goalTA.setText(healthCheck.getGoal());
             goalTargetTA.setText(healthCheck.getGoalTarget());
-            gymUsed.selectToggle(healthCheck.usedGym() ? usedGymYes : usedGymNo);
+            gymUsed.selectToggle(healthCheck.isUsedGym() ? usedGymYes : usedGymNo);
             programUsedTF.setText(healthCheck.getProgramUsed());
-            doneWeights.selectToggle(healthCheck.usedWeights() ? doneWeightsYes : doneWeightsNo);
+            doneWeights.selectToggle(healthCheck.isUsedWeights() ? doneWeightsYes : doneWeightsNo);
             likesTF.setText(healthCheck.getLikes());
             dislikesTF.setText(healthCheck.getDislikes());
             bmiTF.setText(healthCheck.getBmi());
@@ -336,7 +336,7 @@ public class HealthCheckController implements Initializable {
             diseasesTF.setText(healthCheck.getWhichDiseases());
             diseases.selectToggle(healthCheck.isHaveDiseases() ? haveDiseasesYes : haveDiseasesNo);
 
-            ArrayList<Boolean> cb = healthCheck.getCheckBoxes();
+            ArrayList<Boolean> cb = (ArrayList) healthCheck.getCheckBoxes();
             CB1.setSelected(cb.get(0));
             CB2.setSelected(cb.get(1));
             CB3.setSelected(cb.get(2));
@@ -359,7 +359,7 @@ public class HealthCheckController implements Initializable {
             availableDaysSlider.setValue(healthCheck.getAvailableDays());
             workoutTimeSlider.setValue(healthCheck.getWorkoutTime());
             groupFitness.selectToggle(healthCheck.isDoneGroupFitness() ? groupFitnessYes : groupFitnessNo);
-            personalTrainer.selectToggle(healthCheck.usedPersonalTrainer() ? personalTrainerYes : personalTrainerNo);
+            personalTrainer.selectToggle(healthCheck.isUsedPersonalTrainer() ? personalTrainerYes : personalTrainerNo);
             doneSports.selectToggle(healthCheck.isDoneSports() ? doneSportsYes : doneSportsNo);
             bpTF.setText(healthCheck.getBp());
             sportsTF.setText(healthCheck.getSports());

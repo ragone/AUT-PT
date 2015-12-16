@@ -78,9 +78,7 @@ public class MemberController implements Initializable {
     @FXML
     private TableColumn<Program, String> descriptionCol;
     @FXML
-    private TableColumn<HealthCheck, String> dateAddedCol;
-    @FXML
-    private TableColumn<Program, String> personalTrainerCol;
+    private TableColumn<Program, String> dateAddedCol;
     @FXML
     private TableColumn<HealthCheck, String> dateAddedHCCol;
 
@@ -260,7 +258,6 @@ public class MemberController implements Initializable {
         lastModifiedCol.setCellValueFactory(new PropertyValueFactory<>("lastModified"));
         programTable.setItems(programs);
 
-        personalTrainerCol.setCellValueFactory(new PropertyValueFactory<>("Personal Trainer"));
         dateAddedHCCol.setCellValueFactory(new PropertyValueFactory<>("dateAdded"));
         lastModifiedHCCol.setCellValueFactory(new PropertyValueFactory<>("lastModified"));
         healthCheckTable.setItems(healthChecks);

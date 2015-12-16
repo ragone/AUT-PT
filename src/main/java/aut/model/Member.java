@@ -2,6 +2,7 @@ package aut.model;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Member class to hold entries for each member
@@ -11,28 +12,44 @@ import java.util.LinkedList;
  */
 public class Member extends Person {
 
-    private final LinkedList<HealthCheck> healthChecks;
-    private final LinkedList<Program> programs;
+    private List<HealthCheck> healthChecks = new LinkedList<>();
+    private List<Program> programs = new LinkedList<>();
 
-    /** Constructor **/
+    /** Constructors **/
+
+    public Member() {
+        this("","");
+        // used by hibernate
+    }
 
     public Member(String firstName,String lastName) {
-        super(firstName, lastName, false);
-
-        this.programs = new LinkedList<>();
-        this.healthChecks = new LinkedList<>();
+        super(firstName, lastName);
     }
 
     /** Getters **/
 
-    public LinkedList<Program> getPrograms() {
+    public List<Program> getPrograms() {
         return programs;
+    }
+
+    public List<HealthCheck> getHealthChecks() {
+        return healthChecks;
+    }
+
+    /** Setters **/
+
+    public void setPrograms(List<Program> programs) {
+        this.programs = programs;
+    }
+
+    public void setHealthChecks(List<HealthCheck> healthChecks) {
+        this.healthChecks = healthChecks;
     }
 
     /** Methods **/
 
     public void addProgram(Program program) {
-        programs.push(program);
+        programs.add(program);
     }
 
     public void deleteProgram(Program program) {
@@ -45,17 +62,5 @@ public class Member extends Person {
 
     public void deleteHealthCheck(HealthCheck healthCheck) {
         healthChecks.remove(healthCheck);
-    }
-
-    public LocalDate getLastHealthCheckDate() {
-        return healthChecks.peek().getDateAdded();
-    }
-
-    public boolean haveProgram() {
-        return !programs.isEmpty();
-    }
-
-    public LinkedList<HealthCheck> getHealthChecks() {
-        return healthChecks;
     }
 }

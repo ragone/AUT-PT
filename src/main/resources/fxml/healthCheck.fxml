@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -373,7 +374,7 @@
                   </ScrollPane>
                </content>
             </Tab>
-            <Tab text="Programs">
+            <Tab text="Programming">
                <content>
                   <VBox>
                      <children>

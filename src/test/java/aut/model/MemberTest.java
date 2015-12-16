@@ -31,23 +31,6 @@ public class MemberTest {
     }
 
     @Test
-    public void testAddProgram() throws Exception {
-        Program program = new Program("My first Program");
-        member.addProgram(program);
-
-        Assert.assertFalse(member.getPrograms().isEmpty());
-    }
-
-    @Test
-    public void testDeleteProgram() throws Exception {
-        Program program = new Program("My first Program");
-        member.addProgram(program);
-        member.deleteProgram(program);
-
-        Assert.assertTrue(member.getPrograms().isEmpty());
-    }
-
-    @Test
     public void testAddHealthCheck() throws Exception {
         HealthCheck healthCheck = new HealthCheck();
         member.addHealthCheck(healthCheck);
@@ -62,22 +45,5 @@ public class MemberTest {
         member.deleteHealthCheck(healthCheck);
 
         Assert.assertTrue(member.getHealthChecks().isEmpty());
-    }
-
-    @Test
-    public void testGetLastHealthCheckDate() throws Exception {
-        HealthCheck healthCheck = new HealthCheck();
-        member.addHealthCheck(healthCheck);
-        LocalDate date = member.getLastHealthCheckDate();
-
-        Assert.assertEquals(healthCheck.getDateAdded(), date);
-    }
-
-    @Test
-    public void testHaveActiveProgram() throws Exception {
-        Program program = new Program("My first Program");
-        member.addProgram(program);
-
-        Assert.assertTrue(member.haveProgram());
     }
 }

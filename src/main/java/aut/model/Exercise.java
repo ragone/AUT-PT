@@ -9,20 +9,31 @@ import java.util.UUID;
  * @version 9/12/15
  */
 class Exercise {
-    private int reps, sets, restTime;
-    private String id, notes;
+    private int reps;
+    private int sets;
+    private int weight;
+    private int restTime;
+    private long id;
+    private String notes;
+    private Program program;
 
-    public Exercise(int reps, int sets) {
-        this.id = UUID.randomUUID().toString();
+    public Exercise() {
+        this(null, 0, 0);
+        // used by hibernate
+    }
+
+    public Exercise(Program program, int reps, int sets) {
+        this.program = program;
         this.notes = "";
         this.reps = reps;
         this.restTime = 0;
         this.sets = sets;
+        this.weight = 0;
     }
 
     /** Getters **/
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -30,8 +41,16 @@ class Exercise {
         return notes;
     }
 
+    public Program getProgram() {
+        return program;
+    }
+
     public int getReps() {
         return reps;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     public int getRestTime() {
@@ -44,8 +63,16 @@ class Exercise {
 
     /** Setters **/
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
     public void setNotes(String notes) {

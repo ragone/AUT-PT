@@ -10,24 +10,28 @@ import java.util.UUID;
  * @version 9/12/15
  */
 public abstract class Person {
-    private String id;
+    private long id;
     private String firstName;
     private String lastName;
     private Gender gender;
     private LocalDate dateOfBirth;
     private LocalDate dateAdded;
     private LocalDate lastModified;
-    private boolean isPersonalTrainer;
 
-    public Person(String firstName, String lastName, boolean isPersonalTrainer) {
-        this.id = UUID.randomUUID().toString();
+    /** Constructors **/
+
+    public Person() {
+        this("","");
+        // used by hibernate
+    }
+
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = Gender.MALE;
         this.dateOfBirth = LocalDate.now();
         this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
-        this.isPersonalTrainer = isPersonalTrainer;
     }
 
     /** Getters **/
@@ -40,7 +44,7 @@ public abstract class Person {
         return gender;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -54,10 +58,6 @@ public abstract class Person {
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public boolean isPersonalTrainer() {
-        return isPersonalTrainer;
     }
 
     public String getLastName() {
@@ -74,7 +74,7 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -88,10 +88,6 @@ public abstract class Person {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public void setPersonalTrainer(boolean personalTrainer) {
-        isPersonalTrainer = personalTrainer;
     }
 
     public void setLastName(String lastName) {

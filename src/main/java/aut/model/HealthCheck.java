@@ -3,6 +3,7 @@ package aut.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * TODO: Description of HealthCheck.
@@ -11,6 +12,7 @@ import java.util.LinkedList;
  * @version 9/12/15
  */
 public class HealthCheck {
+    private long id;
     private String goal;
     private String goalTarget;
     private String programUsed;
@@ -22,33 +24,34 @@ public class HealthCheck {
     private String whichDiseases;
     private String bp;
     private String sports;
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     private String notes;
-    private PersonalTrainer personalTrainer;
-    private LocalDate dateAdded, lastModified;
-    private boolean usedGym, usedWeights, haveDiseases, doneGroupFitness, usedPersonalTrainer,
-            doneSports, haveActiveProgram;
-    private ArrayList<Boolean> checkBoxes;
+    private String personalTrainer;
+    private LocalDate dateAdded;
+    private LocalDate lastModified;
+    private boolean usedGym;
+    private boolean usedWeights;
+    private boolean haveDiseases;
+    private boolean doneGroupFitness;
+    private boolean usedPersonalTrainer;
+    private boolean doneSports;
+    private boolean haveActiveProgram;
+    private List<Boolean> checkBoxes = new ArrayList<>();
     private Double availableDays, workoutTime;
+    private Member member;
 
-    private LinkedList<BodyMarker> bodyMarkers;
+    private List<BodyMarker> bodyMarkers = new LinkedList<>();
 
     public HealthCheck() {
-        this.bodyMarkers = new LinkedList<>();
+        this(null);
+        // used by hibernate
+    }
+
+    public HealthCheck(Member member) {
         this.dateAdded = LocalDate.now();
         this.lastModified = LocalDate.now();
         this.availableDays = 3.0;
         this.bmi = "";
         this.bp = "";
-        this.checkBoxes = new ArrayList<>();
         this.dislikes = "";
         this.doneGroupFitness = false;
         this.doneSports = false;
@@ -57,7 +60,7 @@ public class HealthCheck {
         this.haveActiveProgram = false;
         this.haveDiseases = false;
         this.likes = "";
-        this.personalTrainer = null;
+        this.personalTrainer = "";
         this.programUsed = "";
         this.rhr = "";
         this.sports = "";
@@ -67,12 +70,17 @@ public class HealthCheck {
         this.weight = "";
         this.whichDiseases = "";
         this.workoutTime = 60.0;
+        this.member = member;
     }
 
     /** Getters **/
 
-    public LinkedList<BodyMarker> getBodyMarkers() {
-        return bodyMarkers;
+    public Member getMember() {
+        return member;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public Double getAvailableDays() {
@@ -83,20 +91,20 @@ public class HealthCheck {
         return bmi;
     }
 
+    public List<BodyMarker> getBodyMarkers() {
+        return bodyMarkers;
+    }
+
     public String getBp() {
         return bp;
     }
 
-    public ArrayList<Boolean> getCheckBoxes() {
+    public List<Boolean> getCheckBoxes() {
         return checkBoxes;
     }
 
     public LocalDate getDateAdded() {
         return dateAdded;
-    }
-
-    public LocalDate getLastModified() {
-        return lastModified;
     }
 
     public String getDislikes() {
@@ -127,11 +135,19 @@ public class HealthCheck {
         return haveDiseases;
     }
 
+    public LocalDate getLastModified() {
+        return lastModified;
+    }
+
     public String getLikes() {
         return likes;
     }
 
-    public PersonalTrainer getPersonalTrainer() {
+    public String getNotes() {
+        return notes;
+    }
+
+    public String getPersonalTrainer() {
         return personalTrainer;
     }
 
@@ -147,15 +163,15 @@ public class HealthCheck {
         return sports;
     }
 
-    public boolean usedGym() {
+    public boolean isUsedGym() {
         return usedGym;
     }
 
-    public boolean usedPersonalTrainer() {
+    public boolean isUsedPersonalTrainer() {
         return usedPersonalTrainer;
     }
 
-    public boolean usedWeights() {
+    public boolean isUsedWeights() {
         return usedWeights;
     }
 
@@ -173,10 +189,6 @@ public class HealthCheck {
 
     /** Setters **/
 
-    public void setBodyMarkers(LinkedList<BodyMarker> bodyMarkers) {
-        this.bodyMarkers = bodyMarkers;
-    }
-
     public void setAvailableDays(Double availableDays) {
         this.availableDays = availableDays;
     }
@@ -185,20 +197,20 @@ public class HealthCheck {
         this.bmi = bmi;
     }
 
+    public void setBodyMarkers(List<BodyMarker> bodyMarkers) {
+        this.bodyMarkers = bodyMarkers;
+    }
+
     public void setBp(String bp) {
         this.bp = bp;
     }
 
-    public void setCheckBoxes(ArrayList<Boolean> checkBoxes) {
+    public void setCheckBoxes(List<Boolean> checkBoxes) {
         this.checkBoxes = checkBoxes;
     }
 
     public void setDateAdded(LocalDate dateAdded) {
         this.dateAdded = dateAdded;
-    }
-
-    public void setLastModified(LocalDate lastModified) {
-        this.lastModified = lastModified;
     }
 
     public void setDislikes(String dislikes) {
@@ -229,11 +241,19 @@ public class HealthCheck {
         this.haveDiseases = haveDiseases;
     }
 
+    public void setLastModified(LocalDate lastModified) {
+        this.lastModified = lastModified;
+    }
+
     public void setLikes(String likes) {
         this.likes = likes;
     }
 
-    public void setPersonalTrainer(PersonalTrainer personalTrainer) {
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setPersonalTrainer(String personalTrainer) {
         this.personalTrainer = personalTrainer;
     }
 
@@ -261,6 +281,10 @@ public class HealthCheck {
         this.usedWeights = usedWeights;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setWeight(String weight) {
         this.weight = weight;
     }
@@ -271,5 +295,9 @@ public class HealthCheck {
 
     public void setWorkoutTime(Double workoutTime) {
         this.workoutTime = workoutTime;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 }
