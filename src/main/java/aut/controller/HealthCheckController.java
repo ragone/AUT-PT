@@ -247,6 +247,8 @@ public class HealthCheckController implements Initializable {
 
         controller.updateTables();
         saveBtn.setDisable(true);
+
+        HibernateUtil.saveUpdateObject(healthCheck);
     }
 
     @FXML

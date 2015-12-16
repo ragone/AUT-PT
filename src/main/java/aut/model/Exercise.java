@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.DayOfWeek;
 import java.util.UUID;
 
 /**
@@ -13,11 +14,13 @@ import java.util.UUID;
  * @version 9/12/15
  */
 @Entity
-class Exercise {
+public class Exercise {
+    private String name;
     private int reps;
     private int sets;
     private int weight;
     private int restTime;
+    private DayOfWeek day;
     @Id
     @GeneratedValue
     private long id;
@@ -26,17 +29,19 @@ class Exercise {
     private Program program;
 
     public Exercise() {
-        this(null, 0, 0);
+        this(null, DayOfWeek.MONDAY);
         // used by hibernate
     }
 
-    public Exercise(Program program, int reps, int sets) {
+    public Exercise(Program program, DayOfWeek day) {
+        this.day = day;
+        this.name = "";
         this.program = program;
         this.notes = "";
-        this.reps = reps;
-        this.restTime = 0;
-        this.sets = sets;
         this.weight = 0;
+        this.reps = 0;
+        this.sets = 0;
+        this.restTime = 0;
     }
 
     /** Getters **/
@@ -57,6 +62,14 @@ class Exercise {
         return reps;
     }
 
+    public DayOfWeek getDay() {
+        return day;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public int getWeight() {
         return weight;
     }
@@ -75,6 +88,10 @@ class Exercise {
         this.id = id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setWeight(int weight) {
         this.weight = weight;
     }
@@ -85,6 +102,10 @@ class Exercise {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public void setDay(DayOfWeek day) {
+        this.day = day;
     }
 
     public void setReps(int reps) {

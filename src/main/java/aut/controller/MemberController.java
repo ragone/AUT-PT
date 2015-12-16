@@ -173,6 +173,8 @@ public class MemberController implements Initializable {
     public void deleteHealthCheckAction(ActionEvent actionEvent) {
         HealthCheck hc = healthCheckTable.getSelectionModel().getSelectedItem();
 
+        HibernateUtil.deleteObject(hc);
+
         member.deleteHealthCheck(hc);
         healthChecks.remove(hc);
     }
