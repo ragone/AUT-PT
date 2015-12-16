@@ -1,5 +1,6 @@
 package aut.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,12 +13,17 @@ import java.util.UUID;
  * @author ragone.
  * @version 9/12/15
  */
+@Entity
 public class Program {
+    @ManyToOne
     private Member member;
+    @Id
+    @GeneratedValue
     private long id;
     private String description;
     private LocalDate dateAdded;
     private LocalDate lastModified;
+    @OneToMany(mappedBy = "program")
     private List<Exercise> exercises = new ArrayList<>();
     private String personalTrainer;
 

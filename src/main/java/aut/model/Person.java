@@ -1,7 +1,9 @@
 package aut.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * TODO: Description of Person.
@@ -9,7 +11,10 @@ import java.util.UUID;
  * @author ragone.
  * @version 9/12/15
  */
+@MappedSuperclass
 public abstract class Person {
+    @Id
+    @GeneratedValue
     private long id;
     private String firstName;
     private String lastName;

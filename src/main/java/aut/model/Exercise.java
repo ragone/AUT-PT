@@ -1,5 +1,9 @@
 package aut.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.UUID;
 
 /**
@@ -8,13 +12,17 @@ import java.util.UUID;
  * @author ragone.
  * @version 9/12/15
  */
+@Entity
 class Exercise {
     private int reps;
     private int sets;
     private int weight;
     private int restTime;
+    @Id
+    @GeneratedValue
     private long id;
     private String notes;
+    @ManyToOne
     private Program program;
 
     public Exercise() {

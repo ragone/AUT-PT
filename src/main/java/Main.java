@@ -1,9 +1,13 @@
+import aut.controller.HibernateUtil;
+import aut.model.Member;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 
@@ -30,6 +34,14 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws Exception {
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+
+        session.save(new Member("Alex", "Ragone"));
+
+        session.getTransaction().commit();
 
         launch(args);
     }

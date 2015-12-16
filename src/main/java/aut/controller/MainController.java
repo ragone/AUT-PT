@@ -19,10 +19,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -81,6 +85,15 @@ public class MainController implements Initializable {
             }
         });
         memberTable.setPlaceholder(new ImageView(new Image("images/bg.jpg")));
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List result = session.createQuery("from Member").list();
+        for (Member member : (List<Member>) result) {
+            members.add(member);
+        }
+        session.getTransaction().commit();
     }
 
     public void addMember(Member member) {

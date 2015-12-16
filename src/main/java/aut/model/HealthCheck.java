@@ -1,5 +1,6 @@
 package aut.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -11,7 +12,10 @@ import java.util.List;
  * @author ragone.
  * @version 9/12/15
  */
+@Entity
 public class HealthCheck {
+    @Id
+    @GeneratedValue
     private long id;
     private String goal;
     private String goalTarget;
@@ -35,10 +39,13 @@ public class HealthCheck {
     private boolean usedPersonalTrainer;
     private boolean doneSports;
     private boolean haveActiveProgram;
+    @ElementCollection
     private List<Boolean> checkBoxes = new ArrayList<>();
     private Double availableDays, workoutTime;
+    @ManyToOne
     private Member member;
 
+    @OneToMany(mappedBy = "healthCheck")
     private List<BodyMarker> bodyMarkers = new LinkedList<>();
 
     public HealthCheck() {

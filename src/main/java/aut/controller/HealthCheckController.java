@@ -251,7 +251,7 @@ public class HealthCheckController implements Initializable {
 
     @FXML
     private void drawCanvas(MouseEvent event) {
-        bodyMarkers.add(new BodyMarker(event.getX(), event.getY(), bodyCP.getValue()));
+        bodyMarkers.add(new BodyMarker(healthCheck, event.getX(), event.getY(), bodyCP.getValue().toString()));
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setStroke(bodyCP.getValue());
         gc.setLineWidth(1.0);
@@ -374,7 +374,7 @@ public class HealthCheckController implements Initializable {
         bodyMarkers = healthCheck.getBodyMarkers();
         for(int i = 0 ; i < bodyMarkers.size() ; i++){
             GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.setStroke(bodyMarkers.get(i).getColor());
+            gc.setStroke(Color.valueOf(bodyMarkers.get(i).getColor()));
             gc.setLineWidth(1.0);
             gc.setTextBaseline(VPos.CENTER);
             gc.setTextAlign(TextAlignment.CENTER);

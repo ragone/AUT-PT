@@ -1,5 +1,8 @@
 package aut.model;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,9 +13,12 @@ import java.util.List;
  * @author ragone.
  * @version 9/12/15
  */
+@Entity
 public class Member extends Person {
 
+    @OneToMany(mappedBy = "member")
     private List<HealthCheck> healthChecks = new LinkedList<>();
+    @OneToMany(mappedBy = "member")
     private List<Program> programs = new LinkedList<>();
 
     /** Constructors **/
