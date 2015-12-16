@@ -78,6 +78,7 @@ public class ProgramController implements Initializable {
 
         controller.updateTables();
         saveBtn.setDisable(true);
+        HibernateUtil.saveUpdateObject(program);
     }
 
     public void setupProgramController(Program program, Member member, MemberController memberController) {

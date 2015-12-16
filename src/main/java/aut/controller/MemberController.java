@@ -145,6 +145,8 @@ public class MemberController implements Initializable {
     public void deleteProgramAction(ActionEvent actionEvent) {
         Program program = programTable.getSelectionModel().getSelectedItem();
 
+        HibernateUtil.deleteObject(program);
+
         member.deleteProgram(program);
         programs.remove(program);
     }
