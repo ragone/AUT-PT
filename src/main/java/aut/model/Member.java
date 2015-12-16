@@ -1,8 +1,6 @@
 package aut.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,9 +14,9 @@ import java.util.List;
 @Entity
 public class Member extends Person {
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "member", cascade = CascadeType.ALL)
     private List<HealthCheck> healthChecks = new LinkedList<>();
-    @OneToMany(mappedBy = "member")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "member", cascade = CascadeType.ALL)
     private List<Program> programs = new LinkedList<>();
 
     /** Constructors **/

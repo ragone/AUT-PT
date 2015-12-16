@@ -9,7 +9,7 @@
         <property name="connection.username"></property>
         <property name="connection.password"/>
         <property name="connection.pool_size">1</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
 

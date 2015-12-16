@@ -336,7 +336,7 @@ public class HealthCheckController implements Initializable {
             diseasesTF.setText(healthCheck.getWhichDiseases());
             diseases.selectToggle(healthCheck.isHaveDiseases() ? haveDiseasesYes : haveDiseasesNo);
 
-            ArrayList<Boolean> cb = (ArrayList) healthCheck.getCheckBoxes();
+            List<Boolean> cb = healthCheck.getCheckBoxes();
             CB1.setSelected(cb.get(0));
             CB2.setSelected(cb.get(1));
             CB3.setSelected(cb.get(2));

@@ -39,13 +39,13 @@ public class HealthCheck {
     private boolean usedPersonalTrainer;
     private boolean doneSports;
     private boolean haveActiveProgram;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Boolean> checkBoxes = new ArrayList<>();
     private Double availableDays, workoutTime;
     @ManyToOne
     private Member member;
 
-    @OneToMany(mappedBy = "healthCheck")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "healthCheck", cascade = CascadeType.ALL)
     private List<BodyMarker> bodyMarkers = new LinkedList<>();
 
     public HealthCheck() {

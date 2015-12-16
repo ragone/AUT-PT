@@ -70,6 +70,14 @@ public class MainController implements Initializable {
         editBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.EDIT));
         deleteBtn.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.TRASH));
 
+        List<Object> dbMembers = HibernateUtil.getObject("Member");
+
+        for (Object obj : dbMembers) {
+            Member member = (Member) obj;
+            members.add(member);
+
+        }
+
         setupMemberTable();
     }
 
@@ -85,15 +93,6 @@ public class MainController implements Initializable {
             }
         });
         memberTable.setPlaceholder(new ImageView(new Image("images/bg.jpg")));
-
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        List result = session.createQuery("from Member").list();
-        for (Member member : (List<Member>) result) {
-            members.add(member);
-        }
-        session.getTransaction().commit();
     }
 
     public void addMember(Member member) {
@@ -153,6 +152,7 @@ public class MainController implements Initializable {
     public void deleteMemberAction(ActionEvent actionEvent) {
         Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
         members.remove(selectedMember);
+        HibernateUtil.deleteObject(selectedMember);
     }
 
     public void updateTable() {

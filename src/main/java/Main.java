@@ -32,16 +32,13 @@ public class Main extends Application {
         }
     }
 
+    @Override
+    public void stop() throws Exception {
+        HibernateUtil.getSessionFactory().close();
+    }
+
 
     public static void main(String[] args) throws Exception {
-
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        session.save(new Member("Alex", "Ragone"));
-
-        session.getTransaction().commit();
 
         launch(args);
     }
