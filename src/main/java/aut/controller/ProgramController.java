@@ -7,19 +7,19 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * TODO: Description of ProgramController.
@@ -110,20 +110,57 @@ public class ProgramController implements Initializable {
         pane.getChildren().remove(button);
         pane.addRow(lastRow + 1, button);
 
-        TitledPane tp = (TitledPane) pane.getParent().getParent();
-        String title = tp.getText();
-        Exercise exercise = new Exercise(program, DayOfWeek.valueOf(title));
-
-        switch (exercise.getDay()) {
-            case MONDAY: mondayExercises.add(exercise);
-                break;
-            case TUESDAY:
-                break;
-        }
-        addRow(pane, lastRow, exercise);
+//        TitledPane tp = (TitledPane) pane.getParent().getParent();
+//        String title = tp.getText();
+//        Exercise exercise = new Exercise(program, DayOfWeek.valueOf(title));
+//
+//        switch (exercise.getDay()) {
+//            case MONDAY: mondayExercises.add(exercise);
+//                break;
+//            case TUESDAY:
+//                break;
+//        }
+        addRow(pane, lastRow);
     }
 
-    public void addRow(GridPane pane, int row, Exercise exercise) {
+    public void addRow(GridPane pane, int row) {
+
+        TextField descriptionTF = new TextField();
+        pane.addRow(row, descriptionTF);
+
+        Spinner weightSpinner = new Spinner(0, 100, 0, 1);
+        weightSpinner.setEditable(true);
+        pane.addRow(row, weightSpinner);
+
+        Spinner setsSpinner = new Spinner(0, 100, 0, 1);
+        setsSpinner.setEditable(true);
+        pane.addRow(row, setsSpinner);
+
+        Spinner repsSpinner = new Spinner(0, 100, 0, 1);
+        repsSpinner.setEditable(true);
+        pane.addRow(row, repsSpinner);
+
+        Spinner restSpinner = new Spinner(0, 100, 0, 1);
+        restSpinner.setEditable(true);
+        pane.addRow(row, restSpinner);
+
+        TextField formTF = new TextField();
+        pane.addRow(row, formTF);
+
+        Button button = new Button();
+        button.setMinWidth(27);
+        button.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT));
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                deleteRow(pane, row);
+            }
+        });
+        pane.addRow(row, button);
+    }
+
+    public void deleteRow(GridPane pane, int row) {
+        pane.
     }
 
     public void saveAsTemplateAction(ActionEvent actionEvent) {

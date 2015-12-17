@@ -1,5 +1,8 @@
 package aut.model;
 
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,6 +37,7 @@ public class Exercise {
     }
 
     public Exercise(Program program, DayOfWeek day) {
+
         this.day = day;
         this.name = "";
         this.program = program;
