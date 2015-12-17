@@ -160,7 +160,7 @@ public class ProgramController implements Initializable {
     }
 
     public void deleteRow(GridPane pane, int row) {
-        pane.
+
     }
 
     public void saveAsTemplateAction(ActionEvent actionEvent) {
