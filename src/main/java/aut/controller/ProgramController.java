@@ -8,6 +8,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -127,7 +128,20 @@ public class ProgramController implements Initializable {
         pane.getChildren().remove(button);
         pane.addRow(lastRow + 1, button);
 
-        mondayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+        ExerciseFormCollection efc = addExerciseRow(pane, lastRow);
+
+        efc.getDeleteButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                deleteRow(pane, efc);
+//                int thisRow = GridPane.getRowIndex(efc.getDescriptionTF());
+//                pane.getRowConstraints().remove(thisRow);
+
+                mondayExerciseFormCollections.remove(efc);
+            }
+        });
+        mondayExerciseFormCollections.add(efc);
+
     }
 
     public ExerciseFormCollection addExerciseRow(GridPane pane, int row) {
@@ -158,13 +172,6 @@ public class ProgramController implements Initializable {
         button.setMinWidth(27);
         button.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT));
         ExerciseFormCollection efc = new ExerciseFormCollection(descriptionTF, weightSpinner, setsSpinner, repsSpinner, restSpinner, formTF, button);
-        button.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                deleteRow(pane, efc);
-            }
-        });
         pane.addRow(row, button);
 
         return efc;

@@ -58,7 +58,7 @@
                <tabs>
                   <Tab closable="false" text="Workout session">
                      <content>
-                        <ScrollPane fitToHeight="true" fitToWidth="true">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
                            <content>
                               <GridPane maxHeight="100.0">
                                  <columnConstraints>
