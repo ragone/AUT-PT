@@ -1,8 +1,9 @@
 package aut.controller;
 
+import aut.model.ExerciseFormCollection;
 import aut.model.Member;
 import aut.model.Program;
-import aut.model.Exercise;
+import com.jfoenix.controls.JFXToggleButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
@@ -13,12 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionListener;
 import java.net.URL;
-import java.time.DayOfWeek;
 import java.util.*;
 
 /**
@@ -29,6 +27,19 @@ import java.util.*;
  */
 public class ProgramController implements Initializable {
     public Button mondayAddExerciseBtn;
+    public JFXToggleButton mondayToggle;
+    public JFXToggleButton tuesdayToggle;
+    public JFXToggleButton wednesdayToggle;
+    public JFXToggleButton thursdayToggle;
+    public JFXToggleButton fridayToggle;
+    public JFXToggleButton saturdayToggle;
+    public JFXToggleButton sundayToggle;
+    public TitledPane sundayTP;
+    public TitledPane saturdayTP;
+    public TitledPane fridayTP;
+    public TitledPane thursdayTP;
+    public TitledPane wednesdayTP;
+    public TitledPane tuesdayTP;
     @FXML
     private VBox container;
 
@@ -50,7 +61,13 @@ public class ProgramController implements Initializable {
     private Program program;
     private MemberController controller;
     private Member member;
-    private List<Object> mondayExercises = new ArrayList<>();
+    private List<ExerciseFormCollection> mondayExerciseFormCollections = new ArrayList<>();
+    private List<ExerciseFormCollection> tuesdayExerciseFormCollections = new ArrayList<>();
+    private List<ExerciseFormCollection> wednesdayExerciseFormCollections = new ArrayList<>();
+    private List<ExerciseFormCollection> thursdayExerciseFormCollections = new ArrayList<>();
+    private List<ExerciseFormCollection> fridayExerciseFormCollections = new ArrayList<>();
+    private List<ExerciseFormCollection> saturdayExerciseFormCollections = new ArrayList<>();
+    private List<ExerciseFormCollection> sundayExerciseFormCollections = new ArrayList<>();
 
 
     @Override
@@ -102,7 +119,7 @@ public class ProgramController implements Initializable {
         personalTrainerTF.textProperty().addListener(listener);
     }
 
-    public void addExerciseAction(ActionEvent actionEvent) {
+    public void addMondayExerciseAction(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         GridPane pane = (GridPane) button.getParent();
         int lastRow = GridPane.getRowIndex(button);
@@ -110,20 +127,10 @@ public class ProgramController implements Initializable {
         pane.getChildren().remove(button);
         pane.addRow(lastRow + 1, button);
 
-//        TitledPane tp = (TitledPane) pane.getParent().getParent();
-//        String title = tp.getText();
-//        Exercise exercise = new Exercise(program, DayOfWeek.valueOf(title));
-//
-//        switch (exercise.getDay()) {
-//            case MONDAY: mondayExercises.add(exercise);
-//                break;
-//            case TUESDAY:
-//                break;
-//        }
-        addRow(pane, lastRow);
+        mondayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
     }
 
-    public void addRow(GridPane pane, int row) {
+    public ExerciseFormCollection addExerciseRow(GridPane pane, int row) {
 
         TextField descriptionTF = new TextField();
         pane.addRow(row, descriptionTF);
@@ -150,20 +157,139 @@ public class ProgramController implements Initializable {
         Button button = new Button();
         button.setMinWidth(27);
         button.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT));
+        ExerciseFormCollection efc = new ExerciseFormCollection(descriptionTF, weightSpinner, setsSpinner, repsSpinner, restSpinner, formTF, button);
         button.setOnAction(new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event) {
-                deleteRow(pane, row);
+                deleteRow(pane, efc);
             }
         });
         pane.addRow(row, button);
+
+        return efc;
     }
 
-    public void deleteRow(GridPane pane, int row) {
-
+    public void deleteRow(GridPane pane, ExerciseFormCollection efc) {
+        pane.getChildren().remove(efc.getDeleteButton());
+        pane.getChildren().remove(efc.getDescriptionTF());
+        pane.getChildren().remove(efc.getFormTF());
+        pane.getChildren().remove(efc.getWeightSpinner());
+        pane.getChildren().remove(efc.getRepsSpinner());
+        pane.getChildren().remove(efc.getRestSpinner());
+        pane.getChildren().remove(efc.getSetsSpinner());
     }
 
     public void saveAsTemplateAction(ActionEvent actionEvent) {
 
+    }
+
+    public void addTuesdayExerciseAction(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        GridPane pane = (GridPane) button.getParent();
+        int lastRow = GridPane.getRowIndex(button);
+
+        pane.getChildren().remove(button);
+        pane.addRow(lastRow + 1, button);
+
+        tuesdayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+    }
+
+    public void addWednesdayExerciseAction(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        GridPane pane = (GridPane) button.getParent();
+        int lastRow = GridPane.getRowIndex(button);
+
+        pane.getChildren().remove(button);
+        pane.addRow(lastRow + 1, button);
+
+        wednesdayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+    }
+
+    public void addThursdayExerciseAction(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        GridPane pane = (GridPane) button.getParent();
+        int lastRow = GridPane.getRowIndex(button);
+
+        pane.getChildren().remove(button);
+        pane.addRow(lastRow + 1, button);
+
+        thursdayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+    }
+
+    public void addFridayExerciseAction(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        GridPane pane = (GridPane) button.getParent();
+        int lastRow = GridPane.getRowIndex(button);
+
+        pane.getChildren().remove(button);
+        pane.addRow(lastRow + 1, button);
+
+        fridayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+    }
+
+    public void addSaturdayExerciseAction(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        GridPane pane = (GridPane) button.getParent();
+        int lastRow = GridPane.getRowIndex(button);
+
+        pane.getChildren().remove(button);
+        pane.addRow(lastRow + 1, button);
+
+        saturdayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+    }
+
+    public void addSundayExerciseAction(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        GridPane pane = (GridPane) button.getParent();
+        int lastRow = GridPane.getRowIndex(button);
+
+        pane.getChildren().remove(button);
+        pane.addRow(lastRow + 1, button);
+
+        sundayExerciseFormCollections.add(addExerciseRow(pane, lastRow));
+    }
+
+    public void mondayToggleAction(ActionEvent actionEvent) {
+        mondayTP.setCollapsible(true);
+        mondayTP.setExpanded(mondayToggle.isSelected());
+        mondayTP.setCollapsible(false);
+    }
+
+    public void tuesdayToggleAction(ActionEvent actionEvent) {
+        tuesdayTP.setCollapsible(true);
+        tuesdayTP.setExpanded(tuesdayToggle.isSelected());
+        tuesdayTP.setCollapsible(false);
+    }
+
+    public void wednesdayToggleAction(ActionEvent actionEvent) {
+        wednesdayTP.setCollapsible(true);
+        wednesdayTP.setExpanded(wednesdayToggle.isSelected());
+        wednesdayTP.setCollapsible(false);
+    }
+
+    public void thursdayToggleAction(ActionEvent actionEvent) {
+        thursdayTP.setCollapsible(true);
+        thursdayTP.setExpanded(thursdayToggle.isSelected());
+        thursdayTP.setCollapsible(false);
+    }
+
+    public void fridayToggleAction(ActionEvent actionEvent) {
+        fridayTP.setCollapsible(true);
+        fridayTP.setExpanded(fridayToggle.isSelected());
+        fridayTP.setCollapsible(false);
+    }
+
+
+    public void saturdayToggleAction(ActionEvent actionEvent) {
+        saturdayTP.setCollapsible(true);
+        saturdayTP.setExpanded(saturdayToggle.isSelected());
+        saturdayTP.setCollapsible(false);
+    }
+
+    public void sundayToggleAction(ActionEvent actionEvent) {
+        sundayTP.setCollapsible(true);
+        sundayTP.setExpanded(sundayToggle.isSelected());
+        sundayTP.setCollapsible(false);
     }
 }

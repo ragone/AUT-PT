@@ -75,7 +75,7 @@
                                     <RowConstraints vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <TitledPane fx:id="mondayTP" animated="false" text="Monday" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="mondayTP" animated="false" collapsible="false" expanded="false" text="Monday" GridPane.columnIndex="1" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
@@ -125,7 +125,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Button fx:id="mondayAddExerciseBtn" mnemonicParsing="false" onAction="#addExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" onAction="#addMondayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
                                                    <VBox.margin>
@@ -136,21 +136,21 @@
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane fx:id="tuesdayTP" animated="false" text="Tuesday" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="tuesdayTP" animated="false" collapsible="false" expanded="false" text="Tuesday" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
                                                 <GridPane hgap="10.0" vgap="10.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
@@ -161,7 +161,6 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.rowIndex="2" />
                                                       <Label text="Weight" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
@@ -187,37 +186,29 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" text="Add new exercise" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" onAction="#addTuesdayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
                                                 </GridPane>
                                              </children>
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane fx:id="wednesdayTP" animated="false" text="Wednesday" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="wednesdayTP" animated="false" collapsible="false" expanded="false" text="Wednesday" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
                                                 <GridPane hgap="10.0" vgap="10.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
@@ -228,7 +219,6 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.rowIndex="2" />
                                                       <Label text="Weight" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
@@ -254,37 +244,29 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" text="Add new exercise" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" onAction="#addWednesdayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
                                                 </GridPane>
                                              </children>
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane fx:id="thursdayTP" animated="false" text="Thursday" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="thursdayTP" animated="false" collapsible="false" expanded="false" text="Thursday" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
                                                 <GridPane hgap="10.0" vgap="10.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
@@ -295,7 +277,6 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.rowIndex="2" />
                                                       <Label text="Weight" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
@@ -321,37 +302,29 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" text="Add new exercise" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" onAction="#addThursdayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
                                                 </GridPane>
                                              </children>
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane fx:id="fridayTP" animated="false" text="Friday" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="fridayTP" animated="false" collapsible="false" expanded="false" text="Friday" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
                                                 <GridPane hgap="10.0" vgap="10.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
@@ -362,7 +335,6 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.rowIndex="2" />
                                                       <Label text="Weight" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
@@ -388,37 +360,29 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" text="Add new exercise" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" onAction="#addFridayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
                                                 </GridPane>
                                              </children>
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane fx:id="saturdayTP" animated="false" text="Saturday" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="saturdayTP" animated="false" collapsible="false" expanded="false" text="Saturday" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
                                                 <GridPane hgap="10.0" vgap="10.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
@@ -429,7 +393,6 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.rowIndex="2" />
                                                       <Label text="Weight" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
@@ -455,37 +418,29 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" text="Add new exercise" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" onAction="#addSaturdayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
                                                 </GridPane>
                                              </children>
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane fx:id="Sunday" animated="false" text="Sunday" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                    <TitledPane fx:id="sundayTP" animated="false" collapsible="false" expanded="false" text="Sunday" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                        <content>
                                           <VBox>
                                              <children>
                                                 <GridPane hgap="10.0" vgap="10.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
-                                                      <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
                                                       <RowConstraints vgrow="SOMETIMES" />
@@ -496,7 +451,6 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.rowIndex="2" />
                                                       <Label text="Weight" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
@@ -522,53 +476,45 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Spinner editable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" text="Add new exercise" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" onAction="#addSundayExerciseAction" text="Add new exercise" GridPane.rowIndex="2" />
                                                       <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
                                                 </GridPane>
                                              </children>
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <JFXToggleButton fx:id="mondayToggle" toggleColor="#005597" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="mondayToggle" onAction="#mondayToggleAction" toggleColor="#005597" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </JFXToggleButton>
-                                    <JFXToggleButton fx:id="tuesdayToggle" toggleColor="#005597" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="tuesdayToggle" onAction="#tuesdayToggleAction" toggleColor="#005597" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </JFXToggleButton>
-                                    <JFXToggleButton fx:id="wednesdayToggle" toggleColor="#005597" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="wednesdayToggle" onAction="#wednesdayToggleAction" toggleColor="#005597" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </JFXToggleButton>
-                                    <JFXToggleButton fx:id="thursdayToggle" toggleColor="#005597" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="thursdayToggle" onAction="#thursdayToggleAction" toggleColor="#005597" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </JFXToggleButton>
-                                    <JFXToggleButton fx:id="fridayToggle" toggleColor="#005597" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="fridayToggle" onAction="#fridayToggleAction" toggleColor="#005597" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </JFXToggleButton>
-                                    <JFXToggleButton fx:id="saturdayToggle" toggleColor="#005597" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="saturdayToggle" onAction="#saturdayToggleAction" toggleColor="#005597" GridPane.rowIndex="5" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
                                     </JFXToggleButton>
-                                    <JFXToggleButton fx:id="sundayToggle" toggleColor="#005597" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                    <JFXToggleButton fx:id="sundayToggle" onAction="#sundayToggleAction" toggleColor="#005597" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="10.0" />
                                        </GridPane.margin>
